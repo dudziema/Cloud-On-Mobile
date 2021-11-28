@@ -1,27 +1,48 @@
 <template>
-  <div class="inputs">
-    <div
-      id="passcode"
-      class="inputs d-flex flex-row justify-content-center mt-2"
-    >
-      <input v-on:keyup="inputenter(0)" type="text" id="input0" maxlength="1" />
-      <input v-on:keyup="inputenter(1)" type="text" id="input1" maxlength="1" />
-      <input v-on:keyup="inputenter(2)" type="text" id="input2" maxlength="1" />
-      <input v-on:keyup="inputenter(3)" type="text" id="input3" maxlength="1" />
+  <div class="list files">
+    <div class="log-in">
+      <h3>
+        Connect to production server
+        <input type="checkbox" v-on:click="productionServer" /><br />
+      </h3>
+      <div
+        id="passcode"
+        class="inputs d-flex flex-row justify-content-center mt-2"
+      >
+        <input
+          v-on:keyup="inputenter(0)"
+          type="text"
+          id="input0"
+          maxlength="1"
+        />
+        <input
+          v-on:keyup="inputenter(1)"
+          type="text"
+          id="input1"
+          maxlength="1"
+        />
+        <input
+          v-on:keyup="inputenter(2)"
+          type="text"
+          id="input2"
+          maxlength="1"
+        />
+        <input
+          v-on:keyup="inputenter(3)"
+          type="text"
+          id="input3"
+          maxlength="1"
+        />
+      </div>
+      <br />
+      <button class="validate" v-on:click="sendMessage()">Validate</button>
     </div>
-
-    <button v-on:click="sendMessage()">Validate</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "Passcode",
-  data: function () {
-    return {
-      connection: null,
-    };
-  },
   methods: {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
@@ -41,26 +62,21 @@ export default {
         }
       }
     },
-    sendMessage: function () {
+    send() {
       let code = parseInt(document.querySelectorAll("#passcode > *[id]"));
       let msg = { type: "web-loging-with-code", code: code };
-      this.ws.send(JSON.stringify(msg));
-      alert("Message is sent.");
+      this.$webSocketsSend(msg);
     },
+    connect() {
+      this.$webSocketsConnect();
+    },
+    // disconnect() {
+    //   this.$webSocketsDisconnect();
+    // },
   },
-  created: function () {
-    console.log("Starting Connection to WebSocket Server");
-    this.ws = new WebSocket("ws://seredynski.com:9292/");
-    this.ws.onopen = () => console.log("Now is connected!");
-
-    this.ws.onmessage = function (event) {
-      let received_message = event.data;
-      alert("Message is received" + received_message);
-    };
-
-    this.ws.onclose = function () {
-      alert("Connection is closed.");
-    };
+  mounted: function () {
+    this.connect();
+    //this.disconnect();
   },
 };
 </script>
@@ -70,6 +86,8 @@ export default {
   height: 90px;
   border-style: inset;
   margin: 3px;
+  font-size: 60px;
+  text-align: center;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -85,14 +103,6 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 2px solid #6f1667;
 }
 
-.validate {
-  border-radius: 20px;
-  height: 40px;
-  background-color: #6f1667;
-  border: 1px solid #6f1667;
-  width: 10%;
-}
-
 .d-flex {
   display: block;
 }
@@ -103,5 +113,63 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .content a:hover {
   color: #6f1667;
+}
+
+.validate {
+  align-items: center;
+  background-color: #0771fc;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: center;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.validate:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+.validate:hover:after {
+  transform: translate(0, 0);
+}
+
+.validate:active {
+  background-color: #034ef0;
+  outline: 0;
+}
+
+.validate:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .validate {
+    padding: 0 40px;
+  }
 }
 </style>
