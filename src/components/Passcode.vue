@@ -1,58 +1,66 @@
 <template>
   <div class="inputs">
-    <div id="passcode" class="inputs d-flex flex-row justify-content-center mt-2">
-      <input
-        type="text"
-        id="input1"
-        v-on:keyup="inputenter(1)"
-        maxlength="1"
-      />
-      <input
-        v-on:keyup="inputenter(2)"
-        type="text"
-        id="input2"
-        maxlength="1"
-      />
-      <input
-        v-on:keyup="inputenter(3)"
-        type="text"
-        id="input3"
-        maxlength="1"
-      />
-      <input
-        v-on:keyup="inputenter(4)"
-        type="text"
-        id="input4"
-        maxlength="1"
-      />
+    <div
+      id="passcode"
+      class="inputs d-flex flex-row justify-content-center mt-2"
+    >
+      <input v-on:keyup="inputenter(0)" type="text" id="input0" maxlength="1" />
+      <input v-on:keyup="inputenter(1)" type="text" id="input1" maxlength="1" />
+      <input v-on:keyup="inputenter(2)" type="text" id="input2" maxlength="1" />
+      <input v-on:keyup="inputenter(3)" type="text" id="input3" maxlength="1" />
     </div>
+
+    <button v-on:click="sendMessage()">Validate</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "Passcode",
+  data: function () {
+    return {
+      connection: null,
+    };
+  },
   methods: {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
-      console.log(id);
-      for (let i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener("keydown", function (event) {
-          if (event.key === "Backspace") {
-            inputs[i].value = "";
-            if (i !== 0) inputs[i - 1].focus();
+      console.log(inputs);
+      let value = inputs[id].value;
+      // Focus on previous box when value is deleted
+      if (value === "") {
+        if (id !== 0) inputs[id - 1].focus();
+      } else {
+        if ("0123456789".indexOf(value) >= 0) {
+          // When last box is filled return true
+          if (id === inputs.length - 1) {
+            return true;
           } else {
-            if (i === inputs.length - 1 && inputs[i].value !== "") {
-              return true;
-            } else if (event.keyCode > 47 && event.keyCode < 58) {
-              inputs[i].value = event.key;
-              if (i !== inputs.length - 1) inputs[i + 1].focus();
-              event.preventDefault();
-            }
+            inputs[id + 1].focus();
           }
-        });
+        }
       }
     },
+    sendMessage: function () {
+      let code = parseInt(document.querySelectorAll("#passcode > *[id]"));
+      let msg = { type: "web-loging-with-code", code: code };
+      this.ws.send(JSON.stringify(msg));
+      alert("Message is sent.");
+    },
+  },
+  created: function () {
+    console.log("Starting Connection to WebSocket Server");
+    this.ws = new WebSocket("ws://seredynski.com:9292/");
+    this.ws.onopen = () => console.log("Now is connected!");
+
+    this.ws.onmessage = function (event) {
+      let received_message = event.data;
+      alert("Message is received" + received_message);
+    };
+
+    this.ws.onclose = function () {
+      alert("Connection is closed.");
+    };
   },
 };
 </script>
