@@ -11,25 +11,25 @@
       >
         <input
           v-on:keyup="inputenter(0)"
-          type="text"
+          type="number"
           id="input0"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(1)"
-          type="text"
+          type="number"
           id="input1"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(2)"
-          type="text"
+          type="number"
           id="input2"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(3)"
-          type="text"
+          type="number"
           id="input3"
           maxlength="1"
         />
@@ -46,7 +46,6 @@ export default {
   methods: {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
-      console.log(inputs);
       let value = inputs[id].value;
       // Focus on previous box when value is deleted
       if (value === "") {
@@ -76,7 +75,6 @@ export default {
   },
   mounted: function () {
     this.connect();
-    //this.disconnect();
   },
 };
 </script>
