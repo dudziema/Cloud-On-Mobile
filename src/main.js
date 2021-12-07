@@ -4,4 +4,8 @@ import router from "./router";
 import store from "./store";
 import webSocketService from "./services/WebSocketService";
 
-createApp(App).use(store).use(router).use(webSocketService).mount("#app");
+createApp(App)
+    .use(store)
+    .use(router)
+    .use(webSocketService)
+    .mount("#app");

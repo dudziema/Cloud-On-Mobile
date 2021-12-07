@@ -5,6 +5,7 @@
         Connect to production server
         <input type="checkbox" v-on:click="productionServer" /><br />
       </h3>
+
       <div
         id="passcode"
         class="inputs d-flex flex-row justify-content-center mt-2"
@@ -35,7 +36,7 @@
         />
       </div>
       <br />
-      <button class="validate" v-on:click="sendMessage()">Validate</button>
+      <button class="validate" v-on:click="send()">Validate</button>
     </div>
   </div>
 </template>
@@ -43,6 +44,7 @@
 <script>
 export default {
   name: "Passcode",
+
   methods: {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
@@ -62,8 +64,8 @@ export default {
       }
     },
     send() {
-      let code = parseInt(document.querySelectorAll("#passcode > *[id]"));
-      let msg = { type: "web-loging-with-code", code: code };
+      // let code = parseInt(document.querySelectorAll("#passcode > *[id]"));
+      let msg = { type: "web-loging-with-code", code: null, demo: 1 };
       this.$webSocketsSend(msg);
     },
     connect() {
