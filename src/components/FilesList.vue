@@ -79,7 +79,7 @@ export default {
 </script>
 <style>
 .active-dropzone {
-  opacity: 0.5;
-  background-color: blue;
+  opacity: 0.25;
+  background-color: #fff;
 }
 </style>

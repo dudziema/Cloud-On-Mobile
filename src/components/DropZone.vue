@@ -10,7 +10,7 @@ export default {
   name: "DropZone",
 };
 </script>
-<style scoped>
+<style >
 .drop {
   align-items: center;
   background-color: #0771fc;
