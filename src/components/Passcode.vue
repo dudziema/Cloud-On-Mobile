@@ -11,31 +11,36 @@
       >
         <input
           v-on:keyup="inputenter(0)"
-          type="number"
+          type="text"
           id="input0"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(1)"
-          type="number"
+          type="text"
           id="input1"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(2)"
-          type="number"
+          type="text"
           id="input2"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(3)"
-          type="number"
+          type="text"
           id="input3"
           maxlength="1"
         />
       </div>
       <br />
-      <button class="validate" v-on:click="sendMessage()">Validate</button>
+      <router-link to="/phoneFiles"
+        ><button class="validate" v-on:click="send()">
+          Validate
+        </button></router-link
+      >
+      <router-view />
     </div>
   </div>
 </template>
@@ -62,7 +67,12 @@ export default {
       }
     },
     send() {
-      let code = parseInt(document.querySelectorAll("#passcode > *[id]"));
+      let code = "";
+      let myNodeList = document.querySelectorAll("#passcode > *[id]");
+      for (let i = 0; i < myNodeList.length; i++) {
+        code += myNodeList[i].value;
+      }
+      code = parseInt(code);
       let msg = { type: "web-loging-with-code", code: code };
       this.$webSocketsSend(msg);
     },
