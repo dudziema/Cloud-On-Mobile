@@ -1,7 +1,7 @@
 <template>
   <div class="dropzone">
-    <label class="drop" for="dopZoneFile">Select File</label>
-    <input type="file" id="dopZoneFile" />
+    <label class="drop" for="dropZoneFile">Select File</label>
+    <input type="file" id="dropZoneFile" class="dropzoneFile" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   name: "DropZone",
 };
 </script>
-<style >
+<style scoped>
 .drop {
   align-items: center;
   background-color: #0771fc;

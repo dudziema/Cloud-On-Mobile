@@ -1,9 +1,10 @@
 <template>
   <div class="list files">
     <div class="log-in">
-      <h3>Connect to production server
-      <input type="checkbox" v-on:click="productionServer" /><br />
-</h3>
+      <h3>
+        Connect to production server
+        <input type="checkbox" v-on:click="productionServer" /><br />
+      </h3>
       <div
         id="passcode"
         class="inputs d-flex flex-row justify-content-center mt-2"

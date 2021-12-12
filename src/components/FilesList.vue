@@ -54,14 +54,7 @@ export default {
       entries: [],
     };
   },
-  methods: {
-    dragOver() {
-      console.log("File(s) in drop zone");
-    },
-    dropHandler() {
-      this.$dropHandler;
-    },
-  },
+
   created() {
     var my_this = this;
     this.$addWsOnMessageListener(xxx);
@@ -77,7 +70,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .active-dropzone {
   opacity: 0.25;
   background-color: #fff;
