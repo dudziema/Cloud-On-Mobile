@@ -1,6 +1,6 @@
 <template>
   <div class="file-list">
-    <DropZone @change="selectedFile" />
+    <SelectFile @change="selectedFile" />
     <span class="file-info">File:{{ dropZoneFile.name }}</span>
     <FilesList @drop.prevent="dropHandler2" />
   </div>
@@ -9,14 +9,14 @@
 <script>
 // @ is an alias to /src
 import FilesList from "@/components/FilesList.vue";
-import DropZone from "@/components/DropZone.vue";
+import SelectFile from "@/components/SelectFile.vue";
 import { ref } from "vue";
 
 export default {
   name: "PhoneFiles",
   components: {
     FilesList,
-    DropZone,
+    SelectFile,
   },
 
   methods: {
