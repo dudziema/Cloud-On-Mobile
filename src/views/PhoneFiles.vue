@@ -1,42 +1,27 @@
 <template>
   <div class="file-list">
-    <FilesList :columns="columns" :entries="entries"></FilesList>
+    <DropZone></DropZone>
+    <span class="file-info">File:{{ dropZoneFile.name }}</span>
+    <FilesList></FilesList>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import FilesList from "@/components/FilesList.vue";
+import DropZone from "@/components/DropZone.vue";
+import { ref } from "vue";
 
 export default {
   name: "PhoneFiles",
-  data() {
-    return {
-      columns: [
-        {
-          name: "name",
-          text: "Name",
-        },
-        {
-          name: "action",
-          text: "Action",
-        },
-      ],
-      entries: [],
-    };
-  },
   components: {
     FilesList,
+    DropZone,
   },
-  created() {
-    this.$GetFiles().then((res) => {
-      this.entries = res;
-    });
-  },
-  methods: {
-    async $GetFiles() {
-      return this.fileList;
-    },
+  setup() {
+    let dropZoneFile = ref("");
+
+    return { dropZoneFile };
   },
 };
 </script>

@@ -1,42 +1,45 @@
 <template>
   <div class="list files">
     <div class="log-in">
-      <h3>
-        Connect to production server
-        <input type="checkbox" v-on:click="productionServer" /><br />
-      </h3>
-
+      <h3>Connect to production server
+      <input type="checkbox" v-on:click="productionServer" /><br />
+</h3>
       <div
         id="passcode"
         class="inputs d-flex flex-row justify-content-center mt-2"
       >
         <input
           v-on:keyup="inputenter(0)"
-          type="number"
+          type="text"
           id="input0"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(1)"
-          type="number"
+          type="text"
           id="input1"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(2)"
-          type="number"
+          type="text"
           id="input2"
           maxlength="1"
         />
         <input
           v-on:keyup="inputenter(3)"
-          type="number"
+          type="text"
           id="input3"
           maxlength="1"
         />
       </div>
       <br />
-      <button class="validate" v-on:click="send()">Validate</button>
+      <router-link to="/phoneFiles"
+        ><button class="validate" v-on:click="send()">
+          Validate
+        </button></router-link
+      >
+      <router-view />
     </div>
   </div>
 </template>
@@ -44,7 +47,6 @@
 <script>
 export default {
   name: "Passcode",
-
   methods: {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
@@ -64,8 +66,13 @@ export default {
       }
     },
     send() {
-      // let code = parseInt(document.querySelectorAll("#passcode > *[id]"));
-      let msg = { type: "web-loging-with-code", code: null, demo: 1 };
+      let code = "";
+      let myNodeList = document.querySelectorAll("#passcode > *[id]");
+      for (let i = 0; i < myNodeList.length; i++) {
+        code += myNodeList[i].value;
+      }
+      code = parseInt(code);
+      let msg = { type: "web-loging-with-code", code: code };
       this.$webSocketsSend(msg);
     },
     connect() {
