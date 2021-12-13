@@ -1,47 +1,50 @@
 <template>
-  <div class="list files">
-    <div class="log-in">
-      <h3>
-        Connect to production server
-        <input type="checkbox" v-on:click="productionServer" /><br />
-      </h3>
-      <div
-        id="passcode"
-        class="inputs d-flex flex-row justify-content-center mt-2"
-      >
-        <input
-          v-on:keyup="inputenter(0)"
-          type="text"
-          id="input0"
-          maxlength="1"
-        />
-        <input
-          v-on:keyup="inputenter(1)"
-          type="text"
-          id="input1"
-          maxlength="1"
-        />
-        <input
-          v-on:keyup="inputenter(2)"
-          type="text"
-          id="input2"
-          maxlength="1"
-        />
-        <input
-          v-on:keyup="inputenter(3)"
-          type="text"
-          id="input3"
-          maxlength="1"
-        />
-      </div>
-      <br />
-      <router-link to="/phoneFiles"
-        ><button class="validate" v-on:click="send()">
-          Validate
-        </button></router-link
-      >
-      <router-view />
-    </div>
+  <div class="enter">Enter the access code</div>
+  <div class="instruction">
+    To connect with your device, please enter the access code displayed in the
+    mobile app.
+  </div>
+  <div>
+    <input
+      class="code"
+      v-on:keyup="inputenter(0)"
+      type="text"
+      id="input0"
+      maxlength="1"
+    />
+    <input
+      class="code"
+      v-on:keyup="inputenter(1)"
+      type="text"
+      id="input1"
+      maxlength="1"
+    />
+    <input
+      class="code"
+      v-on:keyup="inputenter(2)"
+      type="text"
+      id="input2"
+      maxlength="1"
+    />
+    <input
+      class="code"
+      v-on:keyup="inputenter(3)"
+      type="text"
+      id="input3"
+      maxlength="1"
+    />
+  </div>
+  <div class="info">Where can I get the access code?</div>
+  <br />
+
+  <router-link to="/phoneFiles"
+    ><button class="button" v-on:click="send()">
+      <span class="connect">Connect</span>
+    </button></router-link
+  >
+  <router-view />
+  <div>
+    <img src="src/assets/buttons/Apple button.png" />
   </div>
 </template>
 
@@ -88,96 +91,188 @@ export default {
   },
 };
 </script>
-<style>
-.inputs input {
-  width: 80px;
-  height: 90px;
-  border-style: inset;
-  margin: 3px;
-  font-size: 60px;
-  text-align: center;
+<style scoped>
+/* OLi css  */
+* {
+  display: flex;
 }
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-
-.form-control:focus {
-  box-shadow: none;
-  border: 2px solid #6f1667;
-}
-
-.d-flex {
-  display: block;
-}
-.content a {
-  color: #d64f4f;
-  transition: all 0.5s;
-}
-
-.content a:hover {
-  color: #6f1667;
-}
-
-.validate {
-  align-items: center;
-  background-color: #0771fc;
-  border: 2px solid #111;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  display: center;
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  height: 48px;
-  justify-content: center;
-  line-height: 24px;
-  max-width: 100%;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.validate:after {
-  background-color: #111;
-  border-radius: 8px;
-  content: "";
-  display: block;
-  height: 48px;
-  left: 0;
-  width: 100%;
+/* Enter the access code */
+.enter {
   position: absolute;
-  top: -2px;
-  transform: translate(8px, 8px);
-  transition: transform 0.2s ease-out;
-  z-index: -1;
+  width: 24.063rem;
+  height: 3rem;
+  left: 53.5rem;
+  top: 13.313rem;
+
+  /* Heading/Web */
+
+  font-family: SF Pro Text;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 3rem;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.019rem;
+
+  /* black */
+
+  color: #0c0c0c;
 }
 
-.validate:hover:after {
-  transform: translate(0, 0);
+.instruction {
+  /* To connect with your device, please enter the access code displayed in the mobile app. */
+
+  position: absolute;
+  width: 24.063rem;
+  height: 3rem;
+  left: 53.5rem;
+  top: 17.438rem;
+
+  /* Body/16/Regular */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  /* or 150% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.003rem;
+
+  /* black */
+
+  color: #0c0c0c;
+
+  opacity: 0.8;
 }
 
-.validate:active {
-  background-color: #034ef0;
-  outline: 0;
+#input0 {
+  left: 53.5rem;
+  top: 26.313rem;
 }
 
-.validate:hover {
-  outline: 0;
+#input1 {
+  left: 58.408rem;
+  top: 26.313rem;
+}
+#input2 {
+  left: 63.316rem;
+  top: 26.313rem;
+}
+#input3 {
+  left: 68.224rem;
+  top: 26.313rem;
 }
 
-@media (min-width: 768px) {
-  .validate {
-    padding: 0 40px;
-  }
+.code {
+  height: 4rem;
+  width: 3.438rem;
+  left: 0rem;
+  top: 0rem;
+  border-radius: 0.5rem;
+  left: 53.5rem;
+  top: 26.313rem;
+
+  /* codeInput/empty/default */
+
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  /* lightGray */
+
+  background: #f5f6f6;
+  border-radius: 0.5rem;
+}
+
+.info {
+  /* Where can I get the access code? */
+
+  position: absolute;
+  width: 12.688rem;
+  height: 1rem;
+  left: 68.813rem;
+  top: 31.313rem;
+
+  /* Caption */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  /* black */
+
+  color: #0c0c0c;
+
+  opacity: 0.6;
+}
+
+.button {
+  /* button */
+
+  /* Auto Layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+
+  position: absolute;
+  width: 43rem;
+  height: 3.5rem;
+  left: 53.5rem;
+  top: 36.813rem;
+
+  background: rgba(14, 112, 241, 0.4);
+  border-radius: 0.75rem;
+}
+
+.connect {
+  /* Button */
+
+  position: static;
+  width: 4.313rem;
+  height: 1.5rem;
+  left: 11.844rem;
+  top: 1rem;
+
+  /* Button */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.003rem;
+
+  /* white */
+
+  color: #ffffff;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0rem 0.625rem;
 }
 </style>
