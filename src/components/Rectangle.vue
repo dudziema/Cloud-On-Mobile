@@ -1,7 +1,5 @@
 <template>
-  <div class="welcomepage">
-    <h2>Here will be animation</h2>
-  </div>
+  <div class="welcomepage"></div>
 </template>
 <script>
 export default {
@@ -9,18 +7,7 @@ export default {
 };
 </script>
 <style scoped>
-/* Rectangle 1 */
-
-.welcomepage {
-  position: absolute;
-  width: 44rem;
-  height: 64rem;
-  left: 0px;
-  top: 0px;
-  display: flex;
-
-  /* primary/10 */
-
-  background: #f5faff;
+* {
+  min-height: 100%;
 }
 </style>
