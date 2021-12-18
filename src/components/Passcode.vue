@@ -1,10 +1,13 @@
 <template>
-  <div class="enter">Enter the access code</div>
-  <div class="instruction">
-    To connect with your device, please enter the access code displayed in the
-    mobile app.
-  </div>
   <div class="container">
+    <div class="enter">Enter the access code</div>
+
+    <div class="instruction">
+      To connect with your device, please enter the access code displayed in the
+      mobile app.
+    </div>
+
+
     <div class="passcode-inputs">
       <input
         class="input-first"
@@ -43,16 +46,21 @@
         maxlength="1"
       />
     </div>
-    <div class="info">Where can I get the access code?</div>
-    <br />
 
-    <router-link style="text-decoration: none; color: inherit" to="/phoneFiles"
-      ><button class="button" v-on:click="send()">
-        <span class="connect">Connect</span>
-      </button></router-link
-    >
-    <router-view />
-    <div>
+    <div class="info">Where can I get the access code?</div>
+
+    <div class="abc">
+      <router-link
+        style="text-decoration: none; color: inherit"
+        to="/phoneFiles"
+        ><button class="button" v-on:click="send()">
+          <span class="connect">Connect</span>
+        </button></router-link
+      >
+      <router-view />
+    </div>
+
+    <div class="stores">
       <svg
         class="google-button"
         width="202"
@@ -353,92 +361,48 @@ export default {
 </script>
 <style scoped>
 .container {
-  position: relative;
-  display: inline-block;
-  margin: auto;
+  display: grid;
+  grid-template: repeat(8, 1fr) / repeat(12, 1fr);
+  grid-gap: 3px;
 }
-/* Enter the access code */
-.enter {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-left: 20%;
-  padding-top: 5%;
 
-  /* padding-top: 20%; */
-  padding-right: 20%;
+.enter {
+  /* Enter the access code */
+  grid-column: 3 / 6;
+  margin-right: auto;
+  white-space: nowrap;
+  align-self: end;
 
   /* Heading/Web */
-
   font-family: "SF-Pro-Text";
   font-style: normal;
   font-weight: 600;
   font-size: 2.25rem;
   line-height: 3rem;
   text-align: center;
-  /* identical to box height, or 133% */
-
-  display: flex;
-  align-items: center;
   letter-spacing: -0.019rem;
-
-  /* black */
-
   color: #0c0c0c;
 }
 
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
-  margin-left: auto;
+  grid-column: 3 / 10;
   margin-right: auto;
-  display: block;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-top: 1%;
-  padding-left: 20%;
-  padding-right: 25%;
-  padding-bottom: 13%;
-  height: 3rem;
-  left: 53.5rem;
-  top: 17.438rem;
-
   /* Body/16/Regular */
-
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
   line-height: 1.5rem;
-  /* or 150% */
-
-  display: flex;
-  align-items: center;
   letter-spacing: 0.003rem;
-
-  /* black */
-
   color: #0c0c0c;
-
   opacity: 0.8;
 }
-.passcode-inputs {
-  align-content: center;
 
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.passcode-inputs {
+  align-self: end;
+grid-column: 3 / 12;
+
 
   white-space: nowrap;
   overflow: hidden;
@@ -480,13 +444,13 @@ export default {
 }
 .info {
   /* Where can I get the access code? */
+  grid-column: 6 / 10;
+  align-self: start right;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
-  grid-area: info;
-  padding-right: 25%;
-  float: right;
+
   height: 1rem;
 
   /* Caption */
@@ -504,22 +468,20 @@ export default {
   color: #0c0c0c;
   opacity: 0.6;
 }
-
+.abc {
+  grid-column: 3 / 9;
+  align-self: start;
+}
 .button {
   /* button */
 
   /* Auto Layout */
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  grid-area: button;
-  margin-left: 20%;
-  padding-right: 25%;
-  margin-top: 13%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+
+
   padding: 1rem 1.5rem;
   border-style: none;
 
@@ -559,7 +521,10 @@ export default {
   order: 0;
   flex-grow: 0;
 }
-
+.stores {
+  grid-column: 2 / 6;
+  align-self: start;
+}
 .appstore-button {
   white-space: nowrap;
   overflow: hidden;
