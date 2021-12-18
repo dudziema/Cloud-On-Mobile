@@ -7,45 +7,39 @@
   <div class="container">
     <div class="passcode-inputs">
       <input
-        class="code"
+        class="input-first"
         v-on:keyup="inputenter(0)"
         type="text"
-        id="input0"
         maxlength="1"
       />
       <input
-        class="code"
+        class="input"
         v-on:keyup="inputenter(1)"
         type="text"
-        id="input1"
         maxlength="1"
       />
       <input
-        class="code"
+        class="input"
         v-on:keyup="inputenter(2)"
         type="text"
-        id="input2"
         maxlength="1"
       />
       <input
-        class="code"
+        class="input"
         v-on:keyup="inputenter(3)"
         type="text"
-        id="input3"
         maxlength="1"
       />
       <input
-        class="code"
+        class="input"
         v-on:keyup="inputenter(4)"
         type="text"
-        id="input4"
         maxlength="1"
       />
       <input
-        class="code"
+        class="input-last"
         v-on:keyup="inputenter(5)"
         type="text"
-        id="input5"
         maxlength="1"
       />
     </div>
@@ -358,13 +352,27 @@ export default {
 };
 </script>
 <style scoped>
+.container {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+}
 /* Enter the access code */
 .enter {
-  width: 24.063rem;
-  height: 3rem;
-  padding-top: 20%;
-  padding-left: 25%;
-  padding-right: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 20%;
+  padding-top: 5%;
+
+  /* padding-top: 20%; */
+  padding-right: 20%;
 
   /* Heading/Web */
 
@@ -373,6 +381,7 @@ export default {
   font-weight: 600;
   font-size: 2.25rem;
   line-height: 3rem;
+  text-align: center;
   /* identical to box height, or 133% */
 
   display: flex;
@@ -386,10 +395,18 @@ export default {
 
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
-
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding-top: 1%;
-  padding-left: 25%;
-  width: 24.063rem;
+  padding-left: 20%;
+  padding-right: 25%;
+  padding-bottom: 13%;
   height: 3rem;
   left: 53.5rem;
   top: 17.438rem;
@@ -413,34 +430,23 @@ export default {
 
   opacity: 0.8;
 }
-
-#input0 {
-  margin: 2%;
-}
-
-#input1 {
-  margin: 2%;
-}
-#input2 {
-  margin: 2%;
-}
-#input3 {
-  margin: 2%;
-}
-#input4 {
-  margin: 2%;
-}
-#input5 {
-  margin: 2%;
-}
-
 .passcode-inputs {
-  padding-left: 23%;
-  padding-top: 15%;
+  align-content: center;
 
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.code {
+.input,
+.input-first,
+.input-last {
   height: 3.25rem;
   width: 2.793378rem;
   left: 0rem;
@@ -453,8 +459,6 @@ export default {
   right: 0%;
   top: 0%;
   bottom: 0%;
-  margin: 5%;
-  margin-left: 20%;
 
   /* lightGray */
 
@@ -463,14 +467,27 @@ export default {
   border-style: none;
 }
 
+.input {
+  margin: 2%;
+}
+.input-first {
+  margin-right: 2%;
+  margin-left: 0%;
+}
+.input-last {
+  margin-left: 2%;
+  margin-right: 0%;
+}
 .info {
   /* Where can I get the access code? */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
   grid-area: info;
-padding-left: 27%;
-float: right;
+  padding-right: 25%;
+  float: right;
   height: 1rem;
-  padding-right: 28.5%;
-
 
   /* Caption */
   font-family: Poppins;
@@ -480,7 +497,7 @@ float: right;
   line-height: 1rem;
 
   /* identical to box height, or 133% */
-  display: flex;
+  display: inline-block;
   align-items: center;
 
   /* black */
@@ -492,9 +509,13 @@ float: right;
   /* button */
 
   /* Auto Layout */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   grid-area: button;
-  margin-left: 25%;
-  margin-top: 15%;
+  margin-left: 20%;
+  padding-right: 25%;
+  margin-top: 13%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -502,7 +523,6 @@ float: right;
   padding: 1rem 1.5rem;
   border-style: none;
 
-  width: 27rem;
   height: 3.5rem;
   left: 53.5rem;
   top: 36.813rem;
@@ -541,20 +561,21 @@ float: right;
 }
 
 .appstore-button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-left: 5%;
+  margin-right: 20%;
+  width: 20%;
+  height: 20%;
 }
 .google-button {
-  margin-top: 25%;
-  padding-left: 25%;
-}
-
-.container {
-  display: -ms-inline-grid;
-  grid-template-columns: [first] 74.67px [line2]74.67px [line3]74.67px [line4]74.67px[line5] 74.67px [line6]74.67px;
-  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
-  grid-template-areas:
-    "input input input input input input"
-    ". . . . info info"
-    "button button button button button button button";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 13%;
+  padding-left: 20%;
+  width: 20%;
+  height: 20%;
 }
 </style>

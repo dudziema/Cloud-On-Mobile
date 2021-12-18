@@ -1,7 +1,7 @@
 <template>
-  <div class="column" id="rectangle"><Rectangle></Rectangle></div>
+  <div class="column1" id="rectangle"><Rectangle></Rectangle></div>
   <!-- <div class="column" id="rectangle"><Rectangle></Rectangle></div> -->
-  <div class="column" id="passcode"><Passcode></Passcode></div>
+  <div class="column2" id="passcode"><Passcode></Passcode></div>
   <!-- <img src="../assets/buttons/Apple button.png" /> -->
 </template>
 
@@ -25,15 +25,24 @@ export default {
 
 #passcode {
   background-color: white;
+  margin:0rem;
+
 }
 /* Create two equal columns that floats next to each other */
-.column {
-  float: left;
+.column1 {
+  float:left;
   width: 40%;
+  min-height: 100%;
+  margin:0;
+}
+
+.column2 {
+  float: right;
+  width:60%;
   min-height: 100%;
 }
 
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 </style>
