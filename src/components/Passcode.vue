@@ -1,12 +1,15 @@
 <template>
   <div class="container">
+
     <div class="enter">Enter the access code</div>
 
     <div class="instruction">
       To connect with your device, please enter the access code displayed in the
       mobile app.
     </div>
+    <div class="empty-space"></div>
 
+   
 
     <div class="passcode-inputs">
       <input
@@ -60,7 +63,7 @@
       <router-view />
     </div>
 
-    <div class="stores">
+ 
       <svg
         class="google-button"
         width="202"
@@ -311,7 +314,7 @@
           fill="white"
         />
       </svg>
-    </div>
+
   </div>
 </template>
 
@@ -386,7 +389,7 @@ export default {
 
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
-  grid-column: 3 / 10;
+  grid-column: 3 / 9;
   margin-right: auto;
   /* Body/16/Regular */
   font-family: Poppins;
@@ -444,7 +447,7 @@ grid-column: 3 / 12;
 }
 .info {
   /* Where can I get the access code? */
-  grid-column: 6 / 10;
+grid-column: 3 / 7;
   align-self: start right;
   white-space: nowrap;
   overflow: hidden;
@@ -465,8 +468,15 @@ grid-column: 3 / 12;
   align-items: center;
 
   /* black */
-  color: #0c0c0c;
+  color: #0E70F1;
   opacity: 0.6;
+}
+.empty-space {
+ grid-column: 3 / 3;
+   white-space: nowrap;
+     margin-right: auto;
+  white-space: nowrap;
+
 }
 .abc {
   grid-column: 3 / 9;
@@ -476,7 +486,8 @@ grid-column: 3 / 12;
   /* button */
 
   /* Auto Layout */
-
+  width: 400px;
+height: 56px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -522,25 +533,26 @@ grid-column: 3 / 12;
   flex-grow: 0;
 }
 .stores {
-  grid-column: 2 / 6;
-  align-self: start;
+grid-column:3/12;
+
 }
 .appstore-button {
+  grid-column:7/9;
+    align-self: end;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 5%;
-  margin-right: 20%;
-  width: 20%;
-  height: 20%;
+
+  width: 150px;
+
 }
 .google-button {
+  grid-column:3/5;
+    align-self: end; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 13%;
-  padding-left: 20%;
-  width: 20%;
-  height: 20%;
+
+  width: 150px;
 }
 </style>
