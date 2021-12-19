@@ -52,7 +52,7 @@
 
     <div class="info">Where can I get the access code?</div>
 
-    <div class="abc">
+    <div class="button-position">
       <router-link
         style="text-decoration: none; color: inherit"
         to="/phoneFiles"
@@ -478,7 +478,7 @@ grid-column: 3 / 7;
   white-space: nowrap;
 
 }
-.abc {
+.button-position {
   grid-column: 3 / 9;
   align-self: start;
 }
