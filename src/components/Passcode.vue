@@ -1,56 +1,80 @@
 <template>
-  <div class="enter">Enter the access code</div>
-  <div class="instruction">
-    To connect with your device, please enter the access code displayed in the
-    mobile app.
-  </div>
-  <div>
-    <input
-      class="code"
-      v-on:keyup="inputenter(0)"
-      type="text"
-      id="input0"
-      maxlength="1"
-    />
-    <input
-      class="code"
-      v-on:keyup="inputenter(1)"
-      type="text"
-      id="input1"
-      maxlength="1"
-    />
-    <input
-      class="code"
-      v-on:keyup="inputenter(2)"
-      type="text"
-      id="input2"
-      maxlength="1"
-    />
-    <input
-      class="code"
-      v-on:keyup="inputenter(3)"
-      type="text"
-      id="input3"
-      maxlength="1"
-    />
-  </div>
-  <div class="info">Where can I get the access code?</div>
-  <br />
+  <div class="container">
+    <div class="enter">Enter the access code</div>
 
-  <router-link to="/phoneFiles"
-    ><button class="button" v-on:click="send()">
-      <span class="connect">Connect</span>
-    </button></router-link
-  >
-  <router-view />
-  <div>
-    <img src="src/assets/buttons/Apple button.png" />
+    <div class="instruction">
+      To connect with your device, please enter the access code displayed in the
+      mobile app.
+    </div>
+    <div class="empty-space"></div>
+
+    <div class="passcode-inputs">
+      <input
+        class="input-first"
+        v-on:keyup="inputenter(0)"
+        type="text"
+        maxlength="1"
+      />
+      <input
+        class="input"
+        v-on:keyup="inputenter(1)"
+        type="text"
+        maxlength="1"
+      />
+      <input
+        class="input"
+        v-on:keyup="inputenter(2)"
+        type="text"
+        maxlength="1"
+      />
+      <input
+        class="input"
+        v-on:keyup="inputenter(3)"
+        type="text"
+        maxlength="1"
+      />
+      <input
+        class="input"
+        v-on:keyup="inputenter(4)"
+        type="text"
+        maxlength="1"
+      />
+      <input
+        class="input-last"
+        v-on:keyup="inputenter(5)"
+        type="text"
+        maxlength="1"
+      />
+    </div>
+
+    <div class="info">Where can I get the access code?</div>
+
+    <div class="button-position">
+      <router-link
+        style="text-decoration: none; color: inherit"
+        to="/phoneFiles"
+        ><button class="button" v-on:click="send()">
+          <span class="connect">Connect</span>
+        </button></router-link
+      >
+      <router-view />
+    </div>
+    <div class="stores">
+      <Playstore class="google-button" /><Appstore class="appstore-button" />
+    </div>
   </div>
 </template>
 
 <script>
+import Appstore from "./Appstore.vue";
+import Playstore from "./Playstore.vue";
+
 export default {
   name: "Passcode",
+  components: {
+    Appstore,
+    Playstore,
+  },
   methods: {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
@@ -92,95 +116,64 @@ export default {
 };
 </script>
 <style scoped>
-/* OLi css  */
-* {
-  display: flex;
+.container {
+  display: grid;
+  grid-template: repeat(8, 1fr) / repeat(12, 1fr);
+  grid-gap: 3px;
 }
-/* Enter the access code */
+
 .enter {
-  position: absolute;
-  width: 24.063rem;
-  height: 3rem;
-  left: 53.5rem;
-  top: 13.313rem;
+  /* Enter the access code */
+  grid-column: 3 / 6;
+  margin-right: auto;
+  white-space: nowrap;
+  align-self: end;
 
   /* Heading/Web */
-
-  font-family: SF Pro Text;
+  font-family: "SF-Pro-Text";
   font-style: normal;
   font-weight: 600;
   font-size: 2.25rem;
   line-height: 3rem;
-  /* identical to box height, or 133% */
-
-  display: flex;
-  align-items: center;
+  text-align: center;
   letter-spacing: -0.019rem;
-
-  /* black */
-
   color: #0c0c0c;
 }
 
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
-
-  position: absolute;
-  width: 24.063rem;
-  height: 3rem;
-  left: 53.5rem;
-  top: 17.438rem;
-
+  grid-column: 3 / 10;
+  margin-right: auto;
   /* Body/16/Regular */
-
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
   line-height: 1.5rem;
-  /* or 150% */
-
-  display: flex;
-  align-items: center;
   letter-spacing: 0.003rem;
-
-  /* black */
-
   color: #0c0c0c;
-
   opacity: 0.8;
 }
 
-#input0 {
-  left: 53.5rem;
-  top: 26.313rem;
-}
+.passcode-inputs {
+  align-self: end;
+  grid-column: 3 / 12;
 
-#input1 {
-  left: 58.408rem;
-  top: 26.313rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-#input2 {
-  left: 63.316rem;
-  top: 26.313rem;
-}
-#input3 {
-  left: 68.224rem;
-  top: 26.313rem;
-}
-
-.code {
-  height: 4rem;
-  width: 3.438rem;
+.input,
+.input-first,
+.input-last {
+  height: 3.25rem;
+  width: 2.793378rem;
   left: 0rem;
   top: 0rem;
   border-radius: 0.5rem;
-  left: 53.5rem;
-  top: 26.313rem;
 
   /* codeInput/empty/default */
 
-  position: absolute;
   left: 0%;
   right: 0%;
   top: 0%;
@@ -189,50 +182,70 @@ export default {
   /* lightGray */
 
   background: #f5f6f6;
-  border-radius: 0.5rem;
+
+  border-style: none;
 }
 
+.input {
+  margin: 2%;
+}
+.input-first {
+  margin-right: 2%;
+  margin-left: 0%;
+}
+.input-last {
+  margin-left: 2%;
+  margin-right: 0%;
+}
 .info {
   /* Where can I get the access code? */
+  grid-column: 3 / 7;
+  align-self: start right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
 
-  position: absolute;
-  width: 12.688rem;
   height: 1rem;
-  left: 68.813rem;
-  top: 31.313rem;
 
   /* Caption */
-
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 0.75rem;
   line-height: 1rem;
-  /* identical to box height, or 133% */
 
-  display: flex;
+  /* identical to box height, or 133% */
+  display: inline-block;
   align-items: center;
 
   /* black */
-
-  color: #0c0c0c;
-
+  color: #0e70f1;
   opacity: 0.6;
 }
-
+.empty-space {
+  grid-column: 3 / 3;
+  white-space: nowrap;
+  margin-right: auto;
+  white-space: nowrap;
+}
+.button-position {
+  grid-column: 3 / 9;
+  align-self: start;
+}
 .button {
   /* button */
 
   /* Auto Layout */
+  width: 400px;
+  height: 56px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   padding: 1rem 1.5rem;
+  border-style: none;
 
-  position: absolute;
-  width: 43rem;
   height: 3.5rem;
   left: 53.5rem;
   top: 36.813rem;
@@ -244,11 +257,8 @@ export default {
 .connect {
   /* Button */
 
-  position: static;
   width: 4.313rem;
   height: 1.5rem;
-  left: 11.844rem;
-  top: 1rem;
 
   /* Button */
 
@@ -256,10 +266,9 @@ export default {
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
-  line-height: 1.5rem;
+
   /* identical to box height, or 150% */
 
-  display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: 0.003rem;
@@ -270,9 +279,29 @@ export default {
 
   /* Inside Auto Layout */
 
-  flex: none;
   order: 0;
   flex-grow: 0;
-  margin: 0rem 0.625rem;
+}
+.stores {
+  grid-column: 4/12;
+  align-self: end;
+}
+.appstore-button {
+  grid-column: 7/9;
+  align-self: end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width: 95px;
+}
+.google-button {
+  grid-column: 3/5;
+  align-self: end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 50px;
+  width: 100px;
 }
 </style>

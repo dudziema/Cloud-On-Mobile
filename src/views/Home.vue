@@ -1,8 +1,8 @@
 <template>
-  <div class="message-to-user">
-    <Rectangle></Rectangle>>
-    <Passcode></Passcode>
-  </div>
+  <div class="column1" id="rectangle"><Rectangle></Rectangle></div>
+  <!-- <div class="column" id="rectangle"><Rectangle></Rectangle></div> -->
+  <div class="column2" id="passcode"><Passcode></Passcode></div>
+  <!-- <img src="../assets/buttons/Apple button.png" /> -->
 </template>
 
 <script>
@@ -19,10 +19,30 @@ export default {
 };
 </script>
 <style scoped>
+#rectangle {
+  background-color: #f5faff;
+}
+
+#passcode {
+  background-color: white;
+  margin:0rem;
+
+}
+/* Create two equal columns that floats next to each other */
+.column1 {
+  float:left;
+  width: 40%;
+  min-height: 100%;
+  margin:0;
+}
+
+.column2 {
+  float: right;
+  width:60%;
+  min-height: 100%;
+}
+
 * {
-  width: 90rem;
-  height: 64rem;
-  background: #ffffff;
-  position: relative;
+  /* box-sizing: border-box; */
 }
 </style>
