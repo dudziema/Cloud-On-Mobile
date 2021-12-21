@@ -1,46 +1,50 @@
 <template>
   <div class="container">
     <div class="enter">Enter the access code</div>
-
     <div class="instruction">
       To connect with your device, please enter the access code displayed in the
       mobile app.
     </div>
     <div class="empty-space"></div>
-
-    <div class="passcode-inputs">
+    <div class="passcode-inputs" id="passcode">
       <input
         class="input-first"
+        id="input0"
         v-on:keyup="inputenter(0)"
         type="text"
         maxlength="1"
       />
       <input
         class="input"
+        id="input1"
         v-on:keyup="inputenter(1)"
         type="text"
         maxlength="1"
       />
       <input
         class="input"
+        id="input2"
         v-on:keyup="inputenter(2)"
         type="text"
         maxlength="1"
       />
       <input
         class="input"
+        id="input3"
         v-on:keyup="inputenter(3)"
         type="text"
         maxlength="1"
       />
       <input
         class="input"
+        id="input4"
         v-on:keyup="inputenter(4)"
         type="text"
         maxlength="1"
       />
       <input
         class="input-last"
+        id="input5"
         v-on:keyup="inputenter(5)"
         type="text"
         maxlength="1"
@@ -79,6 +83,7 @@ export default {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
       let value = inputs[id].value;
+      
       // Focus on previous box when value is deleted
       if (value === "") {
         if (id !== 0) inputs[id - 1].focus();
@@ -162,27 +167,40 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+}
+input:focus {
+  background: white;
+  border: 2px solid #0E70F1;
+box-sizing: border-box;
+border-radius: 8px;
+
+
+}
+
+input:hover {
+/* white */
+background: white;
+border: 2px solid #0E70F1;
+box-sizing: border-box;
+border-radius: 8px;
+transition: 0.25s ease-in-out;
 }
 .input,
 .input-first,
 .input-last {
   height: 3.25rem;
   width: 2.793378rem;
-  left: 0rem;
-  top: 0rem;
-  border-radius: 0.5rem;
-
-  /* codeInput/empty/default */
-
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 900;
+  font-size: 2rem;
   /* lightGray */
 
   background: #f5f6f6;
-
+border: 2px solid #0E70F1;
+box-sizing: border-box;
+border-radius: 8px;
   border-style: none;
 }
 
