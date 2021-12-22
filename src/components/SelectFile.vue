@@ -1,38 +1,36 @@
 <template>
   <div class="selectfile">
-    <label class="select" for="selectFile">Select File</label>
+    <label class="select" for="selectFile">+ Add new file</label>
     <input type="file" id="selectFile" class="selectFiles" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "DropZone",
+  name: "SelectFile",
 };
 </script>
 <style scoped>
 .select {
-  align-items: center;
-  background-color: #0771fc;
-  border: 2px solid #111;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  display: center;
-  font-family: Inter, sans-serif;
+  /* primary/100 */
+
+  background: #0e70f1;
+  border-radius: 12px;
+
+  /* Button/Large */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
   font-size: 16px;
-  height: 48px;
-  justify-content: center;
   line-height: 24px;
-  max-width: 100%;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  padding: 5%;
+
+  letter-spacing: 0.01em;
+
+  /* white */
+
+  color: #ffffff;
 }
 input {
   display: none;
