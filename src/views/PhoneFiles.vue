@@ -54,6 +54,7 @@ export default {
   grid-gap: 3px;
 }
 .logo {
+  grid-row: 1/1;
   grid-column: 3/5;
   /* logo */
 
@@ -80,30 +81,30 @@ export default {
 }
 
 .button-select {
-  grid-row: 2/-1;
+  grid-row: 2/2;
   grid-column: 1 / span 2;
 }
 
 .all-files {
-  grid-row: 3/-2;
+  grid-row: 3/3;
   grid-column: 1/2;
 }
 
 .recent-files {
-  grid-row: 4/-3;
+  grid-row: 4/4;
   grid-column: 1/2;
 }
 
 .connected-with {
-  grid-row: 5/-4;
+  grid-row: 10/10;
   grid-column: 1/2;
 }
 .settings {
-  grid-row: 6/-5;
+  grid-row: 11/11;
   grid-column: 1/2;
 }
 .disconnect {
-  grid-row: 7/-6;
+  grid-row: 12/12;
   grid-column: 1/2;
 }
 .filelist {
