@@ -25,24 +25,19 @@ export default {
 
 #passcode {
   background-color: white;
-  margin:0rem;
-
+  margin: 0rem;
 }
 /* Create two equal columns that floats next to each other */
 .column1 {
-  float:left;
+  float: left;
   width: 40%;
   min-height: 100%;
-  margin:0;
+  margin: 0;
 }
 
 .column2 {
   float: right;
-  width:60%;
+  width: 60%;
   min-height: 100%;
-}
-
-* {
-  /* box-sizing: border-box; */
 }
 </style>

@@ -44,11 +44,15 @@ export default {
       columns: [
         {
           label: "name",
-          field: "Name",
+          field: "NAME",
         },
         {
-          label: "action",
-          field: "Action",
+          label: "size",
+          field: "FILE SIZE",
+        },
+        {
+          label: "modification",
+          field: "MODIFIED",
         },
       ],
       entries: [],

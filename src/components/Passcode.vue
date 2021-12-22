@@ -83,7 +83,7 @@ export default {
     inputenter(id) {
       const inputs = document.querySelectorAll("#passcode > *[id]");
       let value = inputs[id].value;
-      
+
       // Focus on previous box when value is deleted
       if (value === "") {
         if (id !== 0) inputs[id - 1].focus();
@@ -167,24 +167,21 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 input:focus {
   background: white;
-  border: 2px solid #0E70F1;
-box-sizing: border-box;
-border-radius: 8px;
-
-
+  border: 2px solid #0e70f1;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 
 input:hover {
-/* white */
-background: white;
-border: 2px solid #0E70F1;
-box-sizing: border-box;
-border-radius: 8px;
-transition: 0.25s ease-in-out;
+  /* white */
+  background: white;
+  border: 2px solid #0e70f1;
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition: 0.25s ease-in-out;
 }
 .input,
 .input-first,
@@ -198,9 +195,9 @@ transition: 0.25s ease-in-out;
   /* lightGray */
 
   background: #f5f6f6;
-border: 2px solid #0E70F1;
-box-sizing: border-box;
-border-radius: 8px;
+  border: 2px solid #0e70f1;
+  box-sizing: border-box;
+  border-radius: 8px;
   border-style: none;
 }
 
