@@ -111,4 +111,7 @@ export default {
   grid-column: 3/12;
   grid-row: 3/12;
 }
+span.header {
+  grid-column: span 3;
+}
 </style>
