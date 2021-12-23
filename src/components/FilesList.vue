@@ -9,7 +9,7 @@
     >
       <thead>
         <tr>
-          <th><input type="checkbox" /></th>
+          <th><input id="checkbox" type="checkbox" /></th>
           <th v-for="(column, index) in columns" :key="index">
             <span class="header">{{ column.field }}</span>
           </th>
@@ -18,7 +18,7 @@
 
       <tbody>
         <tr v-for="(entry, index) in entries" :key="index">
-          <td><input type="checkbox" /></td>
+          <td><input id="checkbox" type="checkbox" /></td>
           <td class="entry">{{ entry.name }}</td>
           <td class="entry">{{ entry.size }}</td>
           <td class="entry">{{ entry.modification }}</td>
@@ -30,9 +30,9 @@
 
 <script>
 import { ref } from "vue";
+
 export default {
   name: "FilesList",
-
   setup() {
     const active = ref(false);
 
@@ -60,17 +60,17 @@ export default {
       ],
       entries: [
         {
-          name: "TEST1",
+          name: "test.jpg",
           size: "2 MB",
           modification: "24.10.2021",
         },
         {
-          name: "TEST2",
+          name: "film.mp4",
           size: "45 kB",
           modification: "25.11.2021",
         },
         {
-          name: "TEST2",
+          name: "document.doc",
         },
       ],
     };
@@ -92,22 +92,28 @@ export default {
 };
 </script>
 <style scoped>
-.table,
-th,
-td {
+#checkbox {
+  opacity: 0.2;
+  /* black */
+
   border: 1px solid #0c0c0c;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 .active-dropzone {
   opacity: 0.25;
   background-color: #fff;
 }
-.entry {
+tr:hover {
   background: #f5faff;
+}
+.entry {
+  background: #fff;
 
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  border-bottom: 1px solid #0c0c0c;
+  border-bottom: 1px rgb(80, 80, 80);
 }
 .header {
   grid-column: 2 span;
@@ -130,16 +136,15 @@ td {
   opacity: 0.6;
 }
 th {
-  grid-column: span 2;
+  align-self: center;
 }
-thead > th:nth-child(2) {
-  padding-right: 30rem;
+tr :nth-child(2) {
+  padding-right: 25rem;
 }
-
-thead > :nth-child(3) {
-  padding-right: 5rem;
+tr :nth-child(3) {
+  padding-right: 6rem;
 }
-thead > :nth-child(4) {
+tr :nth-child(4) {
   padding-right: 10rem;
 }
 </style>

@@ -5,7 +5,12 @@
 
     <div class="all-files"><Grid class="grid" />All files</div>
     <div class="recent-files"><Clock class="clock" /> Recent files</div>
-    <div class="connected-with">Connected with</div>
+    <div class="connected-with">
+      <div class="connected-text">Connected with</div>
+      <div class="phoneName">
+        <PhoneIcon class="phoneicon" />{{ phoneName }}
+      </div>
+    </div>
     <div class="settings"><SettingsIcon class="settingsicon" />Settings</div>
     <div class="disconnect"><LogOut class="logout" />Disconnect</div>
     <div class="filelist"><FilesList @drop.prevent="dropHandler2" /></div>
@@ -21,6 +26,7 @@ import Grid from "@/components/Grid.vue";
 import Clock from "@/components/Clock.vue";
 import SettingsIcon from "@/components/SettingsIcon.vue";
 import LogOut from "@/components/LogOut.vue";
+import PhoneIcon from "@/components/PhoneIcon.vue";
 
 export default {
   name: "PhoneFiles",
@@ -31,6 +37,12 @@ export default {
     Clock,
     SettingsIcon,
     LogOut,
+    PhoneIcon,
+  },
+  data() {
+    return {
+      phoneName: "iPhone(TEST)",
+    };
   },
 
   methods: {
@@ -65,7 +77,7 @@ export default {
 .logo {
   grid-row: 1/1;
   grid-column: 2/3;
-  
+
   /* logo */
 
   position: absolute;
@@ -93,7 +105,7 @@ export default {
 .button-select {
   grid-row: 3/3;
   grid-column: 1 / span 2;
-   margin-left:0.5rem;
+  margin-left: 0.5rem;
 }
 .grid {
   padding: 0.5rem;
@@ -103,7 +115,7 @@ export default {
   grid-column: 1/3;
   padding-left: 0%;
   /* Body/16/Bold */
- margin-left:0.5rem;
+  margin-left: 0.5rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: 900;
@@ -133,7 +145,7 @@ export default {
   grid-row: 5/5;
   grid-column: 1/3;
   /* Body/16/Regular */
- margin-left:0.5rem;
+  margin-left: 0.5rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
@@ -149,49 +161,69 @@ export default {
 
   color: #0c0c0c;
 }
-
+.phoneicon {
+  padding: 0.5rem;
+}
 .connected-with {
-
   grid-row: 10/10;
   grid-column: 1/2;
   /* container */
 
   width: 216px;
   height: 64px;
- margin-left:0.5rem;
+  margin-left: 0.5rem;
   /* primary/10 */
 
   background: #f5faff;
   border-radius: 8px;
 
   /* Connected with */
-
+  display: block;
   /* Caption */
 
   font-family: Poppins;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 12px;
   line-height: 16px;
   /* identical to box height, or 133% */
 
-  display: flex;
-  align-items: center;
+
 
   color: #000000;
 
   opacity: 0.6;
 }
+.connected-text {
+  padding-left:0.5rem;
+}
+.phoneName {
+  /* Body/14/Regular */
+  align-self:end;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.003em;
+
+  /* primary/100 */
+
+  color: #0e70f1;
+}
 .settingsicon {
   padding: 0.5rem;
-
 }
 .settings {
   grid-row: 11/11;
   grid-column: 1/3;
   /* Settings */
 
- margin-left:0.5rem;
+  margin-left: 0.5rem;
 
   /* Body/16/Regular */
 
@@ -217,7 +249,7 @@ export default {
 .disconnect {
   grid-row: 12/12;
   grid-column: 1/4;
- margin-left:0.5rem;
+  margin-left: 0.5rem;
 
   /* Body/16/Regular */
 
