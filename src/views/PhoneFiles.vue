@@ -2,11 +2,12 @@
   <div class="container">
     <div class="logo">logo</div>
     <div class="button-select"><SelectFile @change="selectedFile" /></div>
-    <div class="all-files">All files</div>
-    <div class="recent-files">Recent files</div>
+
+    <div class="all-files"><Grid class="grid" />All files</div>
+    <div class="recent-files"><Clock class="clock" /> Recent files</div>
     <div class="connected-with">Connected with</div>
-    <div class="settings">Settings</div>
-    <div class="disconnect">Disconnect</div>
+    <div class="settings"><SettingsIcon class="settingsicon" />Settings</div>
+    <div class="disconnect"><LogOut class="logout" />Disconnect</div>
     <div class="filelist"><FilesList @drop.prevent="dropHandler2" /></div>
   </div>
 </template>
@@ -16,12 +17,20 @@
 import FilesList from "@/components/FilesList.vue";
 import SelectFile from "@/components/SelectFile.vue";
 import { ref } from "vue";
+import Grid from "@/components/Grid.vue";
+import Clock from "@/components/Clock.vue";
+import SettingsIcon from "@/components/SettingsIcon.vue";
+import LogOut from "@/components/LogOut.vue";
 
 export default {
   name: "PhoneFiles",
   components: {
     FilesList,
     SelectFile,
+    Grid,
+    Clock,
+    SettingsIcon,
+    LogOut,
   },
 
   methods: {
@@ -55,7 +64,8 @@ export default {
 }
 .logo {
   grid-row: 1/1;
-  grid-column: 3/5;
+  grid-column: 2/3;
+  
   /* logo */
 
   position: absolute;
@@ -81,31 +91,150 @@ export default {
 }
 
 .button-select {
-  grid-row: 2/2;
-  grid-column: 1 / span 2;
-}
-
-.all-files {
   grid-row: 3/3;
-  grid-column: 1/2;
+  grid-column: 1 / span 2;
+   margin-left:0.5rem;
 }
+.grid {
+  padding: 0.5rem;
+}
+.all-files {
+  grid-row: 4/5;
+  grid-column: 1/3;
+  padding-left: 0%;
+  /* Body/16/Bold */
+ margin-left:0.5rem;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
 
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.003em;
+
+  /* primary/100 */
+
+  color: #0e70f1;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.clock {
+  padding: 0.5rem;
+  color: #0c0c0c;
+}
 .recent-files {
-  grid-row: 4/4;
-  grid-column: 1/2;
+  grid-row: 5/5;
+  grid-column: 1/3;
+  /* Body/16/Regular */
+ margin-left:0.5rem;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.003em;
+
+  /* black */
+
+  color: #0c0c0c;
 }
 
 .connected-with {
+
   grid-row: 10/10;
   grid-column: 1/2;
+  /* container */
+
+  width: 216px;
+  height: 64px;
+ margin-left:0.5rem;
+  /* primary/10 */
+
+  background: #f5faff;
+  border-radius: 8px;
+
+  /* Connected with */
+
+  /* Caption */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  opacity: 0.6;
+}
+.settingsicon {
+  padding: 0.5rem;
+
 }
 .settings {
   grid-row: 11/11;
-  grid-column: 1/2;
+  grid-column: 1/3;
+  /* Settings */
+
+ margin-left:0.5rem;
+
+  /* Body/16/Regular */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.003em;
+
+  /* black */
+
+  color: #0c0c0c;
 }
+.logout {
+  padding: 0.5rem;
+}
+
 .disconnect {
   grid-row: 12/12;
-  grid-column: 1/2;
+  grid-column: 1/4;
+ margin-left:0.5rem;
+
+  /* Body/16/Regular */
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.003em;
+
+  /* black */
+
+  color: #0c0c0c;
 }
 .filelist {
   grid-column: 3/12;
