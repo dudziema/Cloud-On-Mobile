@@ -1,15 +1,5 @@
 <template>
-  <table class="table table:border secondary-5:border">
-    <thead>
-      <tr>
-        <th v-for="(column, index) in columns" :key="index">
-          <div class="between:flex center:items">
-            <span>{{ column.field }}</span>
-            <span></span>
-          </div>
-        </th>
-      </tr>
-    </thead>
+  <table class="table">
     <div
       @dragenter.prevent="toggleActive"
       @dragleave.prevent="toggleActive"
@@ -17,9 +7,21 @@
       @drop.prevent="toggleActive"
       :class="{ 'active-dropzone': active }"
     >
+      <thead>
+        <tr>
+          <th><input type="checkbox" /></th>
+          <th v-for="(column, index) in columns" :key="index">
+            <span class="header">{{ column.field }}</span>
+          </th>
+        </tr>
+      </thead>
+
       <tbody>
         <tr v-for="(entry, index) in entries" :key="index">
-          <td>{{ entry.filename }}</td>
+          <td><input type="checkbox" /></td>
+          <td class="entry">{{ entry.name }}</td>
+          <td class="entry">{{ entry.size }}</td>
+          <td class="entry">{{ entry.modification }}</td>
         </tr>
       </tbody>
     </div>
@@ -30,6 +32,7 @@
 import { ref } from "vue";
 export default {
   name: "FilesList",
+
   setup() {
     const active = ref(false);
 
@@ -44,14 +47,32 @@ export default {
       columns: [
         {
           label: "name",
-          field: "Name",
+          field: "NAME",
         },
         {
-          label: "action",
-          field: "Action",
+          label: "size",
+          field: "FILE SIZE",
+        },
+        {
+          label: "modification",
+          field: "MODIFIED",
         },
       ],
-      entries: [],
+      entries: [
+        {
+          name: "TEST1",
+          size: "2 MB",
+          modification: "24.10.2021",
+        },
+        {
+          name: "TEST2",
+          size: "45 kB",
+          modification: "25.11.2021",
+        },
+        {
+          name: "TEST2",
+        },
+      ],
     };
   },
 
@@ -71,8 +92,54 @@ export default {
 };
 </script>
 <style scoped>
+.table,
+th,
+td {
+  border: 1px solid #0c0c0c;
+}
 .active-dropzone {
   opacity: 0.25;
   background-color: #fff;
+}
+.entry {
+  background: #f5faff;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  border-bottom: 1px solid #0c0c0c;
+}
+.header {
+  grid-column: 2 span;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+
+  /* black */
+
+  color: #0c0c0c;
+
+  opacity: 0.6;
+}
+th {
+  grid-column: span 2;
+}
+thead > th:nth-child(2) {
+  padding-right: 30rem;
+}
+
+thead > :nth-child(3) {
+  padding-right: 5rem;
+}
+thead > :nth-child(4) {
+  padding-right: 10rem;
 }
 </style>
