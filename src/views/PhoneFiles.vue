@@ -13,6 +13,8 @@
     </div>
     <div class="settings"><SettingsIcon class="settingsicon" />Settings</div>
     <div class="disconnect"><LogOut class="logout" />Disconnect</div>
+    <div class="searchbox"><input id="search" type="text" placeholder="search" /></div>
+    <div class="columntitle">All files</div>
     <div class="filelist"><FilesList @drop.prevent="dropHandler2" /></div>
   </div>
 </template>
@@ -269,10 +271,42 @@ export default {
   color: #0c0c0c;
 }
 .filelist {
-  grid-column: 3/12;
-  grid-row: 3/12;
+  grid-column: 2/12;
+  grid-row: 4/12;
 }
-span.header {
-  grid-column: span 3;
+.searchbox {
+  grid-column:2/12;
+  grid-row:1/1;
+}
+#search {
+  grid-column: 2/12;
+  grid-row:1/1;
+  width: 40rem;
+  /* white */
+
+background: #FFFFFF;
+border-radius: 8px;
+border-color:white;
+}
+.columntitle {
+  grid-column: 2/12;
+  grid-row:2/2;
+  /* Heading/Title */
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 48px;
+/* identical to box height, or 133% */
+
+display: flex;
+align-items: center;
+letter-spacing: -0.3px;
+
+/* black */
+
+color: #0C0C0C;
+
 }
 </style>

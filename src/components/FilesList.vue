@@ -104,22 +104,26 @@ export default {
   opacity: 0.25;
   background-color: #fff;
 }
-tr:hover {
+tbody > tr:hover td{
   background: #f5faff;
+  height:3rem;
 }
 .entry {
   background: #fff;
-
+  height:3rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  border-bottom: 1px rgb(80, 80, 80);
+  border-bottom: 1px solid  rgb(231, 231, 231);
 }
 .header {
-  grid-column: 2 span;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+display:block;
   font-family: Poppins;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 900;
   font-size: 16px;
   line-height: 24px;
   /* identical to box height, or 150% */
