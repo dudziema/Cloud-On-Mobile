@@ -120,9 +120,6 @@ webSocketsService.install = function (Vue) {
   };
 
   Vue.config.globalProperties.$dropHandler = (ev) => {
-    console.log("File(s) dropped");
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
     if (ev.dataTransfer.items) {
       // Use DataTransferItemList interface to access the file(s)
       for (var i = 0; i < ev.dataTransfer.items.length; i++) {
@@ -135,9 +132,8 @@ webSocketsService.install = function (Vue) {
           reader.file = file;
           reader.onloadend = function () {
             var data = reader.result;
-            var base64data = btoa(
-              String.fromCharCode.apply(null, new Uint8Array(data))
-            );
+            var base64data = Buffer.from(data).toString("base64");
+            // btoa(String.fromCharCode.apply(null, new Uint8Array(data)));
             wsUploadFile(this.file.name, this.file.size, base64data);
             // console.log(base64data);
           };
