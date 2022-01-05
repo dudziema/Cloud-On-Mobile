@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="logo">logo</div>
+    <div class="logo"><Piglogo /></div>
     <div class="button-select"><SelectFile @change="selectedFile" /></div>
 
     <div class="all-files"><Grid class="grid" />All files</div>
@@ -13,7 +13,9 @@
     </div>
     <div class="settings"><SettingsIcon class="settingsicon" />Settings</div>
     <div class="disconnect"><LogOut class="logout" />Disconnect</div>
-    <div class="searchbox"><input id="search" type="text" placeholder="search" /></div>
+    <div class="searchbox">
+      <input id="search" type="search" placeholder="search" />
+    </div>
     <div class="columntitle">All files</div>
     <div class="filelist"><FilesList @drop.prevent="dropHandler2" /></div>
   </div>
@@ -29,6 +31,8 @@ import Clock from "@/components/Clock.vue";
 import SettingsIcon from "@/components/SettingsIcon.vue";
 import LogOut from "@/components/LogOut.vue";
 import PhoneIcon from "@/components/PhoneIcon.vue";
+import Piglogo  from "@/components/Piglogo.vue"
+
 
 export default {
   name: "PhoneFiles",
@@ -40,6 +44,8 @@ export default {
     SettingsIcon,
     LogOut,
     PhoneIcon,
+    Piglogo,
+
   },
   data() {
     return {
@@ -83,7 +89,7 @@ export default {
   /* logo */
 
   position: absolute;
-  width: 53px;
+  width: 90px;
   height: 40px;
   left: 25px;
   top: 24px;
@@ -190,18 +196,16 @@ export default {
   line-height: 16px;
   /* identical to box height, or 133% */
 
-
-
   color: #000000;
 
   opacity: 0.6;
 }
 .connected-text {
-  padding-left:0.5rem;
+  padding-left: 0.5rem;
 }
 .phoneName {
   /* Body/14/Regular */
-  align-self:end;
+  align-self: end;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
@@ -275,38 +279,38 @@ export default {
   grid-row: 4/12;
 }
 .searchbox {
-  grid-column:2/12;
-  grid-row:1/1;
+  grid-column: 2/12;
+  grid-row: 1/1;
 }
 #search {
   grid-column: 2/12;
-  grid-row:1/1;
+  grid-row: 1/1;
   width: 40rem;
   /* white */
 
-background: #FFFFFF;
-border-radius: 8px;
-border-color:white;
+  background: #ffffff;
+  border-radius: 8px;
+  border-color: white;
+
 }
 .columntitle {
   grid-column: 2/12;
-  grid-row:2/2;
+  grid-row: 2/2;
   /* Heading/Title */
 
-font-family: Poppins;
-font-style: normal;
-font-weight: 600;
-font-size: 36px;
-line-height: 48px;
-/* identical to box height, or 133% */
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 48px;
+  /* identical to box height, or 133% */
 
-display: flex;
-align-items: center;
-letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.3px;
 
-/* black */
+  /* black */
 
-color: #0C0C0C;
-
+  color: #0c0c0c;
 }
 </style>
