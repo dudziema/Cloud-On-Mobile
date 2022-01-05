@@ -30,8 +30,13 @@
           <td class="entry">
             {{ entry.modification }}
           </td>
-          <td v-if="entry.onHover" class="trash-download">
-            <button class="delete">
+          <td class="download">
+            <button v-if="entry.onHover" class="download-button">
+              <DownloadIcon class="download-icon" />
+            </button>
+          </td>
+          <td class="trash">
+            <button v-if="entry.onHover" class="trash-button">
               <TrashIcon class="trash-icon" />
             </button>
           </td>
@@ -44,11 +49,13 @@
 <script>
 import { ref } from "vue";
 import TrashIcon from "@/components/TrashIcon.vue";
+import DownloadIcon from "@/components/DownloadIcon.vue";
 
 export default {
   name: "FilesList",
   components: {
     TrashIcon,
+    DownloadIcon,
   },
   setup() {
     // Active area for drop and upload file
@@ -173,14 +180,28 @@ tr :nth-child(3) {
   padding-right: 6rem;
 }
 tr :nth-child(4) {
-  padding-right: 4rem;
+  padding-right: 3rem;
 }
-.trash-icon :hover {
-  opacity: 0.5;
-  height: 40%;
+
+.trash {
+  padding-left: 1rem;
+  height: 8%;
+  opacity: 0.6;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
+  width: 3rem;
 }
-.delete {
+.download {
+  padding-left: 1rem;
+  height: 8%;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
+  width: 3rem;
+}
+.trash-button,
+.download-button {
   border: none;
   background: none;
 }
+
 </style>
