@@ -10,8 +10,9 @@
       <thead>
         <tr>
           <th><input id="checkbox" type="checkbox" /></th>
+  
           <th v-for="(column, index) in columns" :key="index">
-            <span class="header">{{ column.field }}</span>
+            <span class="header">{{ column.field }} </span>
           </th>
         </tr>
       </thead>
@@ -21,7 +22,10 @@
           <td><input id="checkbox" type="checkbox" /></td>
           <td class="entry">{{ entry.name }}</td>
           <td class="entry">{{ entry.size }}</td>
-          <td class="entry">{{ entry.modification }}</td>
+          <td class="entry">
+            {{ entry.modification }}
+          </td>
+          <td class="tras-download"><TrashIcon class="trash-icon" /></td>
         </tr>
       </tbody>
     </div>
@@ -30,9 +34,13 @@
 
 <script>
 import { ref } from "vue";
+import TrashIcon from "@/components/TrashIcon.vue";
 
 export default {
   name: "FilesList",
+  components: {
+    TrashIcon,
+  },
   setup() {
     const active = ref(false);
 
@@ -56,6 +64,10 @@ export default {
         {
           label: "modification",
           field: "MODIFIED",
+        },
+         {
+          label: "trash_download",
+          field: "",
         },
       ],
       entries: [
@@ -94,23 +106,23 @@ export default {
   opacity: 0.25;
   background-color: #fff;
 }
-tbody > tr:hover td{
+tbody > tr:hover td {
   background: #f5faff;
-  height:3rem;
+  height: 3rem;
 }
 .entry {
   background: #fff;
-  height:3rem;
+  height: 3rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  border-bottom: 1px solid  rgb(231, 231, 231);
+  border-bottom: 1px solid rgb(231, 231, 231);
 }
 .header {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-display:block;
+  display: block;
   font-family: Poppins;
   font-style: normal;
   font-weight: 900;
@@ -139,6 +151,11 @@ tr :nth-child(3) {
   padding-right: 6rem;
 }
 tr :nth-child(4) {
-  padding-right: 10rem;
+  padding-right: 4rem;
+}
+.trash-icon {
+
+    opacity: 0.5;
+    height: 40%;
 }
 </style>
