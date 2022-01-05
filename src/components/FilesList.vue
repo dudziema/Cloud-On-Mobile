@@ -144,6 +144,8 @@ tbody > tr:hover td {
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
+  border-right: none;
+  border-left:none;
   border-bottom: 1px solid rgb(231, 231, 231);
   color: rgb(87, 87, 87);
 }
