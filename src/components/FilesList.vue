@@ -92,6 +92,9 @@ export default {
 };
 </script>
 <style scoped>
+.table{
+  border-spacing:0px;
+}
 #checkbox {
   opacity: 0.2;
   /* black */
