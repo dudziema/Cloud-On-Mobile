@@ -10,7 +10,7 @@
       <thead>
         <tr>
           <th><input id="checkbox" type="checkbox" /></th>
-  
+
           <th v-for="(column, index) in columns" :key="index">
             <span class="header">{{ column.field }} </span>
           </th>
@@ -18,14 +18,23 @@
       </thead>
 
       <tbody>
-        <tr v-for="(entry, index) in entries" :key="index">
+        <tr
+          v-for="(entry, index) in entries"
+          :key="index"
+          @mouseover="showButton(entry)"
+          @mouseleave="hideButton(entry)"
+        >
           <td><input id="checkbox" type="checkbox" /></td>
           <td class="entry">{{ entry.name }}</td>
           <td class="entry">{{ entry.size }}</td>
           <td class="entry">
             {{ entry.modification }}
           </td>
-          <td class="tras-download"><TrashIcon class="trash-icon" /></td>
+          <td v-if="entry.onHover" class="trash-download">
+            <button class="delete">
+              <TrashIcon class="trash-icon" />
+            </button>
+          </td>
         </tr>
       </tbody>
     </div>
@@ -42,6 +51,7 @@ export default {
     TrashIcon,
   },
   setup() {
+    // Active area for drop and upload file
     const active = ref(false);
 
     const toggleActive = () => {
@@ -65,7 +75,7 @@ export default {
           label: "modification",
           field: "MODIFIED",
         },
-         {
+        {
           label: "trash_download",
           field: "",
         },
@@ -74,8 +84,19 @@ export default {
       ],
     };
   },
-
+  methods: {
+    showButton(entry) {
+      entry.onHover = true;
+    },
+    hideButton(entry) {
+      entry.onHover = false;
+    },
+  },
   created() {
+    this.entries.forEach((element) => {
+      element.onHover = false;
+    });
+
     var my_this = this;
     this.$addWsOnMessageListener(xxx);
     this.$wsListFiles();
@@ -117,6 +138,7 @@ tbody > tr:hover td {
   font-style: normal;
   font-weight: normal;
   border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
 }
 .header {
   overflow: hidden;
@@ -153,9 +175,12 @@ tr :nth-child(3) {
 tr :nth-child(4) {
   padding-right: 4rem;
 }
-.trash-icon {
-
-    opacity: 0.5;
-    height: 40%;
+.trash-icon :hover {
+  opacity: 0.5;
+  height: 40%;
+}
+.delete {
+  border: none;
+  background: none;
 }
 </style>
