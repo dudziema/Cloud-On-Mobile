@@ -31,7 +31,11 @@
             {{ entry.modification }}
           </td>
           <td class="download">
-            <button v-if="entry.onHover" class="download-button">
+            <button
+              class="download-button"
+              v-if="entry.onHover"
+              v-on:click="download(entry.filename)"
+            >
               <DownloadIcon class="download-icon" />
             </button>
           </td>
@@ -87,8 +91,7 @@ export default {
           field: "",
         },
       ],
-      entries: [
-      ],
+      entries: [],
     };
   },
   methods: {
@@ -97,6 +100,10 @@ export default {
     },
     hideButton(entry) {
       entry.onHover = false;
+    },
+    download(path) {
+      var msg = { type: "forward", command: "download", path: path };
+      this.$webSocketsSend(msg);
     },
   },
   created() {
@@ -119,8 +126,8 @@ export default {
 };
 </script>
 <style scoped>
-.table{
-  border-spacing:0px;
+.table {
+  border-spacing: 0px;
 }
 #checkbox {
   opacity: 0.2;
@@ -145,7 +152,7 @@ tbody > tr:hover td {
   font-style: normal;
   font-weight: normal;
   border-right: none;
-  border-left:none;
+  border-left: none;
   border-bottom: 1px solid rgb(231, 231, 231);
   color: rgb(87, 87, 87);
 }
@@ -205,5 +212,4 @@ tr :nth-child(4) {
   border: none;
   background: none;
 }
-
 </style>
