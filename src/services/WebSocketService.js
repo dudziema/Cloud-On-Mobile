@@ -161,11 +161,6 @@ webSocketsService.install = function (Vue) {
       if (wsOnmessageListeners != null) {
         wsOnmessageListeners(obj);
       }
-
-      // for (let index = 0; index < wsOnmessageListeners.length; index++) {
-      //   const listener = wsOnmessageListeners[index];
-      //   listener(obj);
-      // }
     } else if (obj.command == "download") {
       // todo: potential js injection
       onDownloadedFileFromPhone(obj);
