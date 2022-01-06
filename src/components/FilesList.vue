@@ -59,19 +59,6 @@ export default {
         },
       ],
       entries: [
-        {
-          name: "test.jpg",
-          size: "2 MB",
-          modification: "24.10.2021",
-        },
-        {
-          name: "film.mp4",
-          size: "45 kB",
-          modification: "25.11.2021",
-        },
-        {
-          name: "document.doc",
-        },
       ],
     };
   },
