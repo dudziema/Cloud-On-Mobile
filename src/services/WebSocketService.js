@@ -53,8 +53,7 @@ function onDownloadedFileFromPhone(message) {
 webSocketsService.install = function (Vue) {
   Vue.config.globalProperties.$webSocketsConnect = function () {
     console.log("Starting Connection to WebSocket Server");
-    ws = new WebSocket("wss://seredynski.com:9292/");
-    // todo remove me. why?
+    ws = new WebSocket("wss://cloudon.cc:9292/");
     this.ws = ws;
     ws.onopen = () => {
       console.log("Now is connected!");
