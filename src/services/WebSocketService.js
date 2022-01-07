@@ -160,16 +160,10 @@ webSocketsService.install = function (Vue) {
       Vue.config.globalProperties.$parseListFiles(obj);
       if (wsOnmessageListeners != null) {
         wsOnmessageListeners(obj);
-      } else if (obj.command == "download") {
-        // todo: potential js injection
-        // file_list = obj.payload
-        onDownloadedFileFromPhone(obj);
       }
-
-      // for (let index = 0; index < wsOnmessageListeners.length; index++) {
-      //   const listener = wsOnmessageListeners[index];
-      //   listener(obj);
-      // }
+    } else if (obj.command == "download") {
+      // todo: potential js injection
+      onDownloadedFileFromPhone(obj);
     }
   }
 };

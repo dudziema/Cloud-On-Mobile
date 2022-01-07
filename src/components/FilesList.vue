@@ -10,18 +10,44 @@
       <thead>
         <tr>
           <th><input id="checkbox" type="checkbox" /></th>
+
           <th v-for="(column, index) in columns" :key="index">
-            <span class="header">{{ column.field }}</span>
+            <span class="header">{{ column.field }} </span>
           </th>
         </tr>
       </thead>
 
       <tbody>
-        <tr v-for="(entry, index) in entries" :key="index">
+        <tr
+          v-for="(entry, index) in entries"
+          :key="index"
+          @mouseover="showButton(entry)"
+          @mouseleave="hideButton(entry)"
+        >
           <td><input id="checkbox" type="checkbox" /></td>
           <td class="entry">{{ entry.name }}</td>
           <td class="entry">{{ entry.size }}</td>
-          <td class="entry">{{ entry.modification }}</td>
+          <td class="entry">
+            {{ entry.modification }}
+          </td>
+          <td class="download">
+            <button
+              class="download-button"
+              v-if="entry.onHover"
+              v-on:click="download(entry.filename)"
+            >
+              <DownloadIcon class="download-icon" />
+            </button>
+          </td>
+          <td class="trash">
+            <button
+              class="trash-button"
+              v-if="entry.onHover"
+              v-on:click="deleteFile(entry.filename)"
+            >
+              <TrashIcon class="trash-icon" />
+            </button>
+          </td>
         </tr>
       </tbody>
     </div>
@@ -30,10 +56,17 @@
 
 <script>
 import { ref } from "vue";
+import TrashIcon from "@/components/TrashIcon.vue";
+import DownloadIcon from "@/components/DownloadIcon.vue";
 
 export default {
   name: "FilesList",
+  components: {
+    TrashIcon,
+    DownloadIcon,
+  },
   setup() {
+    // Active area for drop and upload file
     const active = ref(false);
 
     const toggleActive = () => {
@@ -57,13 +90,35 @@ export default {
           label: "modification",
           field: "MODIFIED",
         },
+        {
+          label: "trash_download",
+          field: "",
+        },
       ],
-      entries: [
-      ],
+      entries: [],
     };
   },
-
+  methods: {
+    showButton(entry) {
+      entry.onHover = true;
+    },
+    hideButton(entry) {
+      entry.onHover = false;
+    },
+    download(path) {
+      var msg = { type: "forward", command: "download", path: path };
+      this.$webSocketsSend(msg);
+    },
+    deleteFile(path) {
+      var msg = { type: "forward", command: "remove", path: path };
+      this.$webSocketsSend(msg);
+    },
+  },
   created() {
+    this.entries.forEach((element) => {
+      element.onHover = false;
+    });
+
     var my_this = this;
     this.$addWsOnMessageListener(xxx);
     this.$wsListFiles();
@@ -79,8 +134,8 @@ export default {
 };
 </script>
 <style scoped>
-.table{
-  border-spacing:0px;
+.table {
+  border-spacing: 0px;
 }
 #checkbox {
   opacity: 0.2;
@@ -94,23 +149,26 @@ export default {
   opacity: 0.25;
   background-color: #fff;
 }
-tbody > tr:hover td{
+tbody > tr:hover td {
   background: #f5faff;
-  height:3rem;
+  height: 3rem;
 }
 .entry {
   background: #fff;
-  height:3rem;
+  height: 3rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  border-bottom: 1px solid  rgb(231, 231, 231);
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
 }
 .header {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-display:block;
+  display: block;
   font-family: Poppins;
   font-style: normal;
   font-weight: 900;
@@ -139,6 +197,27 @@ tr :nth-child(3) {
   padding-right: 6rem;
 }
 tr :nth-child(4) {
-  padding-right: 10rem;
+  padding-right: 3rem;
+}
+
+.trash {
+  padding-left: 1rem;
+  height: 8%;
+  opacity: 0.6;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
+  width: 3rem;
+}
+.download {
+  padding-left: 1rem;
+  height: 8%;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
+  width: 3rem;
+}
+.trash-button,
+.download-button {
+  border: none;
+  background: none;
 }
 </style>
