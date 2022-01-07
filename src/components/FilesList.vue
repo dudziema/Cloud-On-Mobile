@@ -29,18 +29,12 @@
           <td class="entry">
             {{ entry.modification }}
           </td>
-          <td class="download">
-            <button
-              class="download-button"
-              v-if="entry.onHover"
-              v-on:click="download(entry.filename)"
-            >
-              <DownloadIcon class="download-icon" />
-            </button>
-          </td>
-          <td class="trash">
-            <button v-if="entry.onHover" class="trash-button">
-              <TrashIcon class="trash-icon" />
+          <td v-if="entry.onHover" class="trash-download">
+            <button class="delete">
+              <TrashIcon
+                class="trash-icon"
+                v-on:click="delete entry.filename"
+              />
             </button>
           </td>
         </tr>
@@ -52,13 +46,11 @@
 <script>
 import { ref } from "vue";
 import TrashIcon from "@/components/TrashIcon.vue";
-import DownloadIcon from "@/components/DownloadIcon.vue";
 
 export default {
   name: "FilesList",
   components: {
     TrashIcon,
-    DownloadIcon,
   },
   setup() {
     // Active area for drop and upload file
@@ -100,8 +92,8 @@ export default {
     hideButton(entry) {
       entry.onHover = false;
     },
-    download(path) {
-      var msg = { type: "forward", command: "download", path: path };
+    delete(path) {
+      var msg = { type: "forward", command: "remove", path: path };
       this.$webSocketsSend(msg);
     },
   },
@@ -150,8 +142,6 @@ tbody > tr:hover td {
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  border-right: none;
-  border-left: none;
   border-bottom: 1px solid rgb(231, 231, 231);
   color: rgb(87, 87, 87);
 }
@@ -188,27 +178,18 @@ tr :nth-child(3) {
   padding-right: 6rem;
 }
 tr :nth-child(4) {
-  padding-right: 3rem;
+  padding-right: 4rem;
 }
-
-.trash {
-  padding-left: 1rem;
-  height: 8%;
-  opacity: 0.6;
-  border-bottom: 1px solid rgb(231, 231, 231);
-  color: rgb(87, 87, 87);
-  width: 3rem;
+.trash-icon :hover {
+  opacity: 0.5;
+  height: 40%;
 }
-.download {
-  padding-left: 1rem;
-  height: 8%;
-  border-bottom: 1px solid rgb(231, 231, 231);
-  color: rgb(87, 87, 87);
-  width: 3rem;
-}
-.trash-button,
-.download-button {
+.delete {
   border: none;
   background: none;
+}
+.trash-icon {
+  opacity: 0.5;
+  height: 40%;
 }
 </style>
