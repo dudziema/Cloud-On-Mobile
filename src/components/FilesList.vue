@@ -40,7 +40,11 @@
             </button>
           </td>
           <td class="trash">
-            <button v-if="entry.onHover" class="trash-button">
+            <button
+              class="trash-button"
+              v-if="entry.onHover"
+              v-on:click="deleteFile(entry.filename)"
+            >
               <TrashIcon class="trash-icon" />
             </button>
           </td>
@@ -103,6 +107,10 @@ export default {
     },
     download(path) {
       var msg = { type: "forward", command: "download", path: path };
+      this.$webSocketsSend(msg);
+    },
+    deleteFile(path) {
+      var msg = { type: "forward", command: "remove", path: path };
       this.$webSocketsSend(msg);
     },
   },
