@@ -101,8 +101,13 @@ webSocketsService.install = function (Vue) {
 
   Vue.config.globalProperties.$wsDownloadFile = function (path) {
     var msg = { type: "forward", command: "download", path: path };
-    this.webSocketsSend(msg);
+    this.$webSocketsSend(msg);
   };
+  Vue.config.globalProperties.$wsDeleteFile = function (path) {
+    var msg = { type: "forward", command: "remove", path: path };
+    this.$webSocketsSend(msg);
+  };
+
 
   Vue.config.globalProperties.$GetSavedFiles = function () {
     return files;
