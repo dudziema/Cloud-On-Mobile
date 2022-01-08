@@ -56,6 +56,7 @@ export default {
   methods: {
     dropHandler2(ev) {
       this.$dropHandler(ev);
+      
     },
   },
   setup() {
@@ -67,10 +68,12 @@ export default {
 
     const dropHandler = (ev) => {
       this.$dropHandler2(ev);
+      
     };
 
     const selectedFile = () => {
       dropZoneFile.value = document.querySelector(".dropzoneFile").files[0];
+      
     };
     return { dropZoneFile, drop, selectedFile, dropHandler };
   },

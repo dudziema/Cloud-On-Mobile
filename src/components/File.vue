@@ -46,6 +46,7 @@ export default {
     },
     deleteFile(path) {
       this.$wsDeleteFile(path);
+      this.$wsListFiles();
     },
   },
 };
