@@ -17,7 +17,7 @@
       <input id="search" type="search" placeholder="search" />
     </div>
     <div class="columntitle">All files</div>
-    <div class="filelist"><FilesList @drop.prevent="dropHandler2" /></div>
+    <div class="filelist"><FilesList @drop="dropHandler" /></div>
   </div>
 </template>
 
@@ -25,7 +25,6 @@
 // @ is an alias to /src
 import FilesList from "@/components/FilesList.vue";
 import SelectFile from "@/components/SelectFile.vue";
-import { ref } from "vue";
 import Grid from "@/components/Grid.vue";
 import Clock from "@/components/Clock.vue";
 import SettingsIcon from "@/components/SettingsIcon.vue";
@@ -52,25 +51,27 @@ export default {
   },
 
   methods: {
-    dropHandler2(ev) {
-      this.$dropHandler(ev);
+    dropHandler(ev) {
+      if (ev.dataTransfer.items) {
+        // Use DataTransferItemList interface to access the file(s)
+        for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+          // If dropped items aren't files, reject them
+          if (ev.dataTransfer.items[i].kind === "file") {
+            var file = ev.dataTransfer.items[i].getAsFile();
+            //console log to check
+            console.log("... file[" + i + "].name = " + file.name);
+            this.$sendFile(file);
+          } else {
+            alert("This item can't be uploaded.");
+          }
+        }
+      }
     },
-  },
-  setup() {
-    let dropZoneFile = ref("");
-
-    const drop = (ev) => {
-      dropZoneFile.value = ev.dataTransfer.files[0];
-    };
-
-    const dropHandler = (ev) => {
-      this.$dropHandler2(ev);
-    };
-
-    const selectedFile = () => {
-      dropZoneFile.value = document.querySelector(".dropzoneFile").files[0];
-    };
-    return { dropZoneFile, drop, selectedFile, dropHandler };
+    selectedFile(event) {
+      console.log("selfile_phone");
+      console.log(event.target.files);
+      this.$sendFile(event.target.files[0]);
+    },
   },
 };
 </script>

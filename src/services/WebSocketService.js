@@ -120,34 +120,16 @@ webSocketsService.install = function (Vue) {
     wsOnmessageListeners.push(listenerFunction);
   };
 
-  Vue.config.globalProperties.$dropHandler = (ev) => {
-    if (ev.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[i].kind === "file") {
-          var file = ev.dataTransfer.items[i].getAsFile();
-          console.log("... file[" + i + "].name = " + file.name);
-          var reader = new FileReader();
-          reader.readAsArrayBuffer(file);
-          reader.file = file;
-          reader.onloadend = function () {
-            var data = reader.result;
-            var base64data = Buffer.from(data).toString("base64");
-            // btoa(String.fromCharCode.apply(null, new Uint8Array(data)));
-            wsUploadFile(this.file.name, this.file.size, base64data);
-            // console.log(base64data);
-          };
-        }
-      }
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      for (var j = 0; j < ev.dataTransfer.files.length; j++) {
-        console.log(
-          "... file[" + j + "].name = " + ev.dataTransfer.files[j].name
-        );
-      }
-    }
+  Vue.config.globalProperties.$sendFile = (file) => {
+    var reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.file = file;
+    reader.onloadend = function () {
+      var data = reader.result;
+      var base64data = Buffer.from(data).toString("base64");
+      wsUploadFile(this.file.name, this.file.size, base64data);
+      console.log("Wyslany pliczek z buttonu");
+    };
   };
 
   /*

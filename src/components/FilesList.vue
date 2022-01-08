@@ -1,10 +1,10 @@
 <template>
   <table class="table">
     <div
-      @dragenter.prevent="toggleActive"
-      @dragleave.prevent="toggleActive"
+      @dragenter="toggleActive"
+      @dragleave="toggleActive"
       @dragover.prevent
-      @drop.prevent="toggleActive"
+      @drop="toggleActive"
       :class="{ 'active-dropzone': active }"
     >
       <thead>
@@ -43,10 +43,10 @@ export default {
     // Active area for drop and upload file
     const active = ref(false);
 
-    const toggleActive = () => {
+    const toggleActive = (event) => {
+      event.preventDefault();
       active.value = !active.value;
     };
-
     return { active, toggleActive };
   },
   data() {
