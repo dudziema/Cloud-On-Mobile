@@ -86,15 +86,11 @@ export default {
     });
 
     var my_this = this;
-    this.$addWsOnMessageListener(xxx);
+    this.$addWsOnMessageListener(loadEntries);
     this.$wsListFiles();
-    // this.$set(this.entries, 0, 3);
-
-    function xxx(msg) {
+    function loadEntries(msg) {
       console.log(msg);
-      // Vue.$set(this.entries, 0, msg.payload);
       my_this.entries = msg.payload;
-      // my_this.$set(my_this.$entries, 0, "gg");
     }
   },
 };

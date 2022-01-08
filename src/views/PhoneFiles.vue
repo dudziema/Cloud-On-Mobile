@@ -31,8 +31,7 @@ import Clock from "@/components/Clock.vue";
 import SettingsIcon from "@/components/SettingsIcon.vue";
 import LogOut from "@/components/LogOut.vue";
 import PhoneIcon from "@/components/PhoneIcon.vue";
-import Piglogo  from "@/components/Piglogo.vue"
-
+import Piglogo from "@/components/Piglogo.vue";
 
 export default {
   name: "PhoneFiles",
@@ -45,7 +44,6 @@ export default {
     LogOut,
     PhoneIcon,
     Piglogo,
-
   },
   data() {
     return {
@@ -56,7 +54,6 @@ export default {
   methods: {
     dropHandler2(ev) {
       this.$dropHandler(ev);
-      
     },
   },
   setup() {
@@ -68,12 +65,10 @@ export default {
 
     const dropHandler = (ev) => {
       this.$dropHandler2(ev);
-      
     };
 
     const selectedFile = () => {
       dropZoneFile.value = document.querySelector(".dropzoneFile").files[0];
-      
     };
     return { dropZoneFile, drop, selectedFile, dropHandler };
   },
@@ -294,7 +289,6 @@ export default {
   background: #ffffff;
   border-radius: 8px;
   border-color: white;
-
 }
 .columntitle {
   grid-column: 2/12;

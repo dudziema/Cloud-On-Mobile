@@ -1,7 +1,7 @@
 let webSocketsService = {};
 var ws = null;
 var files = [];
-var wsOnmessageListeners = null;
+var wsOnmessageListeners = [];
 
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
@@ -117,7 +117,7 @@ webSocketsService.install = function (Vue) {
   Vue.config.globalProperties.$addWsOnMessageListener = function (
     listenerFunction
   ) {
-    wsOnmessageListeners = listenerFunction; 
+    wsOnmessageListeners.push(listenerFunction);
   };
 
   Vue.config.globalProperties.$dropHandler = (ev) => {
@@ -160,8 +160,10 @@ webSocketsService.install = function (Vue) {
     } else if (obj.command == "list-files") {
       // todo: potential js injection
       Vue.config.globalProperties.$parseListFiles(obj);
-      if (wsOnmessageListeners != null) {
-        wsOnmessageListeners(obj);
+      if (wsOnmessageListeners.length != 0) {
+        for (var i = 0; i < wsOnmessageListeners.length; i++) {
+          wsOnmessageListeners[i](obj);
+        }
       }
     } else if (obj.command == "download") {
       // todo: potential js injection
