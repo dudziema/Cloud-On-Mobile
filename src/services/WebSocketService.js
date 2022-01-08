@@ -1,7 +1,7 @@
 let webSocketsService = {};
 var ws = null;
 var files = [];
-var wsOnmessageListeners = null;
+var wsOnmessageListeners = [];
 
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
@@ -60,7 +60,6 @@ webSocketsService.install = function (Vue) {
     };
 
     ws.onmessage = (event) => {
-      // New message from the backend - use JSON.parse(event.data)
       let received_message = event.data;
       alert("Message is received" + received_message);
       parseMessage(received_message);
@@ -83,7 +82,6 @@ webSocketsService.install = function (Vue) {
     ws.close();
   };
   Vue.config.globalProperties.$webSocketsSend = (msg) => {
-    // Send data to the backend - use JSON.stringify(data)
     ws.send(JSON.stringify(msg));
     alert("Message is sent.");
   };
@@ -108,7 +106,6 @@ webSocketsService.install = function (Vue) {
     this.$webSocketsSend(msg);
   };
 
-
   Vue.config.globalProperties.$GetSavedFiles = function () {
     return files;
   };
@@ -120,7 +117,7 @@ webSocketsService.install = function (Vue) {
   Vue.config.globalProperties.$addWsOnMessageListener = function (
     listenerFunction
   ) {
-    wsOnmessageListeners = listenerFunction; //.push(listenerFunction);
+    wsOnmessageListeners.push(listenerFunction);
   };
 
   Vue.config.globalProperties.$dropHandler = (ev) => {
@@ -163,12 +160,16 @@ webSocketsService.install = function (Vue) {
     } else if (obj.command == "list-files") {
       // todo: potential js injection
       Vue.config.globalProperties.$parseListFiles(obj);
-      if (wsOnmessageListeners != null) {
-        wsOnmessageListeners(obj);
+      if (wsOnmessageListeners.length != 0) {
+        for (var i = 0; i < wsOnmessageListeners.length; i++) {
+          wsOnmessageListeners[i](obj);
+        }
       }
     } else if (obj.command == "download") {
       // todo: potential js injection
       onDownloadedFileFromPhone(obj);
+    } else if (obj.command == "upload") {
+      Vue.config.globalProperties.$wsListFiles();
     }
   }
 };
