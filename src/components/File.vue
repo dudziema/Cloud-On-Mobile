@@ -3,7 +3,7 @@
     <td><input id="checkbox" type="checkbox" /></td>
     <td class="entry">{{ entry.name }}</td>
     <td class="entry">{{ formatBytes(entry.size, (decimals = 0)) }}</td>
-    <td class="entry">{{ entry.modification }}</td>
+    <td class="entry">{{ formatTime(entry.date_epoch) }}</td>
     <td class="download">
       <button
         class="download-button"
@@ -63,6 +63,26 @@ export default {
       const i = Math.floor(Math.log(bytes) / Math.log(k));
 
       return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    },
+    formatTime(epochTime) {
+      const d = new Date(epochTime * 1000);
+      const uDay = function (d) {
+        if (d.getDate() < 10) {
+          return "0" + d.getDate();
+        } else {
+          return d.getDate();
+        }
+      };
+      const uMonth = function (d) {
+        if (d.getMonth() + 1 < 10) {
+          return "0" + (d.getMonth() + 1);
+        } else {
+          return d.getMonth() + 1;
+        }
+      };
+      const uYear = d.getFullYear();
+      const uploadDate = uDay(d) + "." + uMonth(d) + "." + uYear;
+      return uploadDate;
     },
   },
 };

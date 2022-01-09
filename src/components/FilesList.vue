@@ -61,8 +61,8 @@ export default {
           field: "FILE SIZE",
         },
         {
-          label: "modification",
-          field: "MODIFIED",
+          label: "upload_date",
+          field: "UPLOAD DATE",
         },
         {
           label: "trash_download",
