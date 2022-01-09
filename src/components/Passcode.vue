@@ -57,10 +57,13 @@
       <router-link
         style="text-decoration: none; color: inherit"
         to="/phoneFiles"
-        ><button class="button" v-on:click="send()">
+        ><button
+          :class="{ button: isComplete, disabledButton: !isComplete }"
+          v-on:click="send()"
+        >
           <span class="connect">Connect</span>
-        </button></router-link
-      >
+        </button>
+      </router-link>
       <router-view />
     </div>
     <div class="stores">
@@ -74,30 +77,41 @@ import Appstore from "./Appstore.vue";
 import Playstore from "./Playstore.vue";
 
 export default {
-  name: "Passcode",
   components: {
     Appstore,
     Playstore,
   },
+  data() {
+    return {
+      isComplete: false,
+    };
+  },
   methods: {
-    inputenter(id) {
-      const inputs = document.querySelectorAll("#passcode > *[id]");
-      let value = inputs[id].value;
+    changeButton() {
+      this.isComplete = true;
+    },
 
-      // Focus on previous box when value is deleted
-      if (value === "") {
-        if (id !== 0) inputs[id - 1].focus();
+    inputenter() {
+      if (this.isPasscode()) {
+        this.isComplete = true;
       } else {
-        if ("0123456789".indexOf(value) >= 0) {
-          // When last box is filled return true
-          if (id === inputs.length - 1) {
-            return true;
-          } else {
-            inputs[id + 1].focus();
-          }
-        }
+        this.isComplete = false;
       }
     },
+    isPasscode() {
+      const inputs = document.querySelectorAll("#passcode > *[id]");
+      var isAnyEmpty = false;
+      if (inputs.length == 0) {
+        isAnyEmpty = true;
+      }
+      for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].value == "") {
+          isAnyEmpty = true;
+        }
+      }
+      return !isAnyEmpty;
+    },
+
     send() {
       let code = "";
       let myNodeList = document.querySelectorAll("#passcode > *[id]");
@@ -117,7 +131,30 @@ export default {
   },
   mounted: function () {
     this.connect();
+    const inputs = document.querySelectorAll("#passcode > *[id]");
+
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener("keydown", function (event) {
+        if (event.key === "Backspace") {
+          inputs[i].value = "";
+          if (i !== 0) {
+            inputs[i - 1].focus();
+            event.preventDefault();
+          }
+        } else {
+          if (i === inputs.length - 1 && inputs[i].value !== "") {
+            return;
+          } else if (event.keyCode > 47 && event.keyCode < 58) {
+            inputs[i].value = event.key;
+            if (i !== inputs.length - 1) inputs[i + 1].focus();
+            event.preventDefault();
+          }
+        }
+      });
+    }
   },
+
+  computed: {},
 };
 </script>
 <style scoped>
@@ -264,9 +301,24 @@ input:hover {
   height: 3.5rem;
   left: 53.5rem;
   top: 36.813rem;
-
-  background: rgba(14, 112, 241, 0.4);
   border-radius: 0.75rem;
+  background: #0e70f1;
+}
+.disabledButton {
+  width: 400px;
+  height: 56px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding: 1rem 1.5rem;
+  border-style: none;
+
+  height: 3.5rem;
+  left: 53.5rem;
+  top: 36.813rem;
+  border-radius: 0.75rem;
+  background: rgba(14, 112, 241, 0.4);
 }
 
 .connect {
