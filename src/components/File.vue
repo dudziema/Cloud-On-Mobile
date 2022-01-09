@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td>
+    <td class="icon-file">
       <img :src="getIcon(getExtention(entry.filename))" />
     </td>
     <td class="entry">{{ entry.name }}</td>
@@ -46,13 +46,13 @@ export default {
         },
         {
           value: docIcon,
-          extention: ["doc", "docx", "pdf","xls", "xlsx", "ppt", "pptx"],
+          extention: ["doc", "docx", "pdf", "xls", "xlsx", "ppt", "pptx"],
         },
         {
           value: videoIcon,
           extention: ["mp4", "wmv", "avi"],
         },
-         {
+        {
           value: musicIcon,
           extention: ["mp3"],
         },
@@ -130,14 +130,18 @@ export default {
 };
 </script>
 <style scoped>
-#checkbox {
+/* #checkbox {
   opacity: 0.2;
   /* black */
 
-  border: 1px solid #0c0c0c;
+/* border: 1px solid #0c0c0c;
   box-sizing: border-box;
   border-radius: 4px;
+} */
+img {
+  align-items: right;
 }
+
 .entry {
   background: #fff;
   height: 3rem;

@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <div class="empty-space"></div>
     <div class="enter">Enter the access code</div>
     <div class="instruction">
       To connect with your device, please enter the access code displayed in the
       mobile app.
     </div>
-    <div class="empty-space"></div>
+    <div class="styling"></div>
     <div class="passcode-inputs" id="passcode">
       <input
         class="input-first"
@@ -66,8 +67,11 @@
       </router-link>
       <router-view />
     </div>
+
     <div class="stores">
-      <Playstore class="google-button" /><Appstore class="appstore-button" />
+      <Playstore class="google-button" /><img :src="image" /><Appstore
+        class="appstore-button"
+      /><img :src="image" />
     </div>
   </div>
 </template>
@@ -75,6 +79,7 @@
 <script>
 import Appstore from "./Appstore.vue";
 import Playstore from "./Playstore.vue";
+import InProgress from "@/assets/images/inprogress.png";
 
 export default {
   components: {
@@ -83,6 +88,7 @@ export default {
   },
   data() {
     return {
+      image: InProgress,
       isComplete: false,
     };
   },
@@ -158,6 +164,12 @@ export default {
 };
 </script>
 <style scoped>
+img {
+  width: 1.5rem;
+  padding-left: 1rem;
+  opacity: 0.5;
+  padding-bottom: 1rem;
+}
 .container {
   display: grid;
   grid-template: repeat(8, 1fr) / repeat(12, 1fr);
@@ -281,6 +293,9 @@ input:hover {
   margin-right: auto;
   white-space: nowrap;
 }
+.styling {
+  grid-column: 4/5;
+}
 .button-position {
   grid-column: 3 / 9;
   align-self: start;
@@ -349,26 +364,28 @@ input:hover {
   order: 0;
   flex-grow: 0;
 }
+
 .stores {
-  grid-column: 4/12;
+  grid-column: 3/12;
   align-self: end;
 }
 .appstore-button {
-  grid-column: 7/9;
+  grid-column: 10/10;
   align-self: end;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
+  padding-left: 5rem;
   width: 95px;
 }
 .google-button {
-  grid-column: 3/5;
+  grid-column: 4/5;
   align-self: end;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 50px;
+  padding-left: 2rem;
+
   width: 100px;
 }
 </style>

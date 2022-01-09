@@ -81,7 +81,6 @@ webSocketsService.install = function (Vue) {
   };
   Vue.config.globalProperties.$webSocketsSend = (msg) => {
     ws.send(JSON.stringify(msg));
-
   };
 
   // todo: rename to: parseListFiles()

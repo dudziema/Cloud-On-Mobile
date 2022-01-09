@@ -4,18 +4,24 @@
     <div class="button-select"><SelectFile @change="selectedFile" /></div>
 
     <div class="all-files"><Grid class="grid" />All files</div>
-    <div class="recent-files"><Clock class="clock" /> Recent files</div>
+    <div class="recent-files">
+      <Clock class="clock" /> Recent files<img :src="image" />
+    </div>
     <div class="connected-with">
       <div class="connected-text">Connected with</div>
       <div class="phoneName">
-        <PhoneIcon class="phoneicon" />{{ phoneName }}
+        <PhoneIcon class="phoneicon" />{{ phoneName }}<img :src="image" />
       </div>
     </div>
-    <div class="settings"><SettingsIcon class="settingsicon" />Settings</div>
-    <div class="disconnect"><LogOut class="logout" />Disconnect</div>
-    <div class="searchbox">
-      <input id="search" type="search" placeholder="search" />
+    <div class="settings">
+      <SettingsIcon class="settingsicon" />Settings <img :src="image" />
     </div>
+    <div class="disconnect">
+      <LogOut class="logout" />Disconnect <img :src="image" />
+    </div>
+    <!-- <div class="searchbox">
+      <input id="search" type="search" placeholder="search" />
+    </div> -->
     <div class="columntitle">All files</div>
     <div class="filelist"><FilesList @drop="dropHandler" /></div>
   </div>
@@ -31,9 +37,11 @@ import SettingsIcon from "@/components/SettingsIcon.vue";
 import LogOut from "@/components/LogOut.vue";
 import PhoneIcon from "@/components/PhoneIcon.vue";
 import Piglogo from "@/components/Piglogo.vue";
+import InProgress from "@/assets/images/inprogress.png";
 
 export default {
   name: "PhoneFiles",
+
   components: {
     FilesList,
     SelectFile,
@@ -46,6 +54,7 @@ export default {
   },
   data() {
     return {
+      image: InProgress,
       phoneName: "iPhone(TEST)",
     };
   },
@@ -76,6 +85,11 @@ export default {
 };
 </script>
 <style scoped>
+img {
+  width: 1.5rem;
+  padding-left: 1rem;
+  opacity: 0.5;
+}
 .container {
   display: grid;
   grid-template: repeat(12, 1fr) / repeat(12, 1fr);

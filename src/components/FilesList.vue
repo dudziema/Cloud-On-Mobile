@@ -9,8 +9,6 @@
     >
       <thead>
         <tr>
-          <th></th>
-
           <th v-for="(column, index) in columns" :key="index">
             <span class="header">{{ column.field }} </span>
           </th>
@@ -55,6 +53,10 @@ export default {
         {
           label: "name",
           field: "NAME",
+        },
+        {
+          label: "empty-temporary",
+          field: "",
         },
         {
           label: "size",
@@ -132,7 +134,8 @@ th {
   align-self: center;
 }
 tr :nth-child(2) {
-  padding-right: 25rem;
+  padding-right: 1rem;
+  width: 30rem;
 }
 tr :nth-child(3) {
   padding-right: 6rem;
