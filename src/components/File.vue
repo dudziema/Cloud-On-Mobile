@@ -1,6 +1,8 @@
 <template>
   <tr>
-    <td><input id="checkbox" type="checkbox" /></td>
+    <td>
+      <img :src="getIcon(getExtention(entry.filename))" />
+    </td>
     <td class="entry">{{ entry.name }}</td>
     <td class="entry">{{ formatBytes(entry.size, (decimals = 0)) }}</td>
     <td class="entry">{{ formatTime(entry.date_epoch) }}</td>
@@ -27,12 +29,34 @@
 <script>
 import TrashIcon from "@/components/TrashIcon.vue";
 import DownloadIcon from "@/components/DownloadIcon.vue";
+import imageIcon from "@/assets/images/imageIcon.png";
+import docIcon from "@/assets/images/docIcon.png";
+import videoIcon from "@/assets/images/videoIcon.png";
+import musicIcon from "@/assets/images/musicIcon.png";
 
 export default {
   name: "File",
   data() {
     return {
       decimals: 0,
+      extentionsList: [
+        {
+          value: imageIcon,
+          extention: ["jpg", "jpeg", "png", "gif"],
+        },
+        {
+          value: docIcon,
+          extention: ["doc", "docx", "pdf","xls", "xlsx", "ppt", "pptx"],
+        },
+        {
+          value: videoIcon,
+          extention: ["mp4", "wmv", "avi"],
+        },
+         {
+          value: musicIcon,
+          extention: ["mp3"],
+        },
+      ],
     };
   },
   components: {
@@ -83,6 +107,24 @@ export default {
       const uYear = d.getFullYear();
       const uploadDate = uDay(d) + "." + uMonth(d) + "." + uYear;
       return uploadDate;
+    },
+    getExtention(value) {
+      var getExtention = value.split(".");
+      var extention = getExtention[1];
+
+      return extention;
+    },
+    getIcon(ext) {
+      let icon =
+        this.extentionsList.find((item) => {
+          let { extention } = item;
+          if (Array.isArray(extention)) {
+            return extention.includes(ext);
+          } else if (typeof extention === "string") {
+            return extention === ext;
+          }
+        }) || {};
+      return icon.value || this.extentionsList[1].value;
     },
   },
 };

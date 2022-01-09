@@ -9,7 +9,7 @@
     >
       <thead>
         <tr>
-          <th><input id="checkbox" type="checkbox" /></th>
+          <th></th>
 
           <th v-for="(column, index) in columns" :key="index">
             <span class="header">{{ column.field }} </span>
