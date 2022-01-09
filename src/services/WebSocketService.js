@@ -5,7 +5,6 @@ var wsOnmessageListeners = [];
 
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
-  alert("Message is sent private.");
 }
 
 function wsUploadFile(filename, size, bytes) {
@@ -61,7 +60,6 @@ webSocketsService.install = function (Vue) {
 
     ws.onmessage = (event) => {
       let received_message = event.data;
-      alert("Message is received" + received_message);
       parseMessage(received_message);
     };
 
@@ -83,7 +81,7 @@ webSocketsService.install = function (Vue) {
   };
   Vue.config.globalProperties.$webSocketsSend = (msg) => {
     ws.send(JSON.stringify(msg));
-    alert("Message is sent.");
+
   };
 
   // todo: rename to: parseListFiles()
