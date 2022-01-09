@@ -2,7 +2,7 @@
   <tr>
     <td><input id="checkbox" type="checkbox" /></td>
     <td class="entry">{{ entry.name }}</td>
-    <td class="entry">{{ entry.size }}</td>
+    <td class="entry">{{ formatBytes(entry.size, (decimals = 0)) }}</td>
     <td class="entry">{{ entry.modification }}</td>
     <td class="download">
       <button
@@ -30,6 +30,11 @@ import DownloadIcon from "@/components/DownloadIcon.vue";
 
 export default {
   name: "File",
+  data() {
+    return {
+      decimals: 0,
+    };
+  },
   components: {
     TrashIcon,
     DownloadIcon,
@@ -47,6 +52,17 @@ export default {
     deleteFile(path) {
       this.$wsDeleteFile(path);
       this.$wsListFiles();
+    },
+    formatBytes(bytes, decimals) {
+      if (bytes === 0) return "0 Bytes";
+
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
     },
   },
 };
