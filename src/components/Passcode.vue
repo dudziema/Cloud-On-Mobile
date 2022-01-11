@@ -187,7 +187,7 @@ img {
   font-family: "SF-Pro-Text";
   font-style: normal;
   font-weight: 600;
-  font-size: 2.25rem;
+  font-size: 230%;
   line-height: 3rem;
   text-align: center;
   letter-spacing: -0.019rem;
@@ -196,7 +196,7 @@ img {
 
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
-  grid-column: 3 / 10;
+  grid-column: 3 / 9;
   margin-right: auto;
   /* Body/16/Regular */
   font-family: Poppins;
