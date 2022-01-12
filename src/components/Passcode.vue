@@ -5,9 +5,10 @@
       To connect with your device, please enter the access code displayed in the
       mobile app.
     </div>
-
     <div class="passcode-inputs" id="passcode">
       <input
+        autocomplete="off"
+        pattern="\d*"
         class="input-first"
         id="input0"
         v-on:keyup="inputenter(0)"
@@ -15,6 +16,8 @@
         maxlength="1"
       />
       <input
+        autocomplete="off"
+        pattern="\d*"
         class="input"
         id="input1"
         v-on:keyup="inputenter(1)"
@@ -22,6 +25,8 @@
         maxlength="1"
       />
       <input
+        autocomplete="off"
+        pattern="\d*"
         class="input"
         id="input2"
         v-on:keyup="inputenter(2)"
@@ -29,6 +34,8 @@
         maxlength="1"
       />
       <input
+        autocomplete="off"
+        pattern="\d*"
         class="input"
         id="input3"
         v-on:keyup="inputenter(3)"
@@ -36,6 +43,8 @@
         maxlength="1"
       />
       <input
+        autocomplete="off"
+        pattern="\d*"
         class="input"
         id="input4"
         v-on:keyup="inputenter(4)"
@@ -43,12 +52,15 @@
         maxlength="1"
       />
       <input
+        autocomplete="off"
+        pattern="\d*"
         class="input-last"
         id="input5"
         v-on:keyup="inputenter(5)"
         type="text"
         maxlength="1"
       />
+
       <br />
       <div class="info">Where can I get the access code?</div>
     </div>
@@ -184,6 +196,7 @@ export default {
   .input-last {
     height: 12vw;
     width: 9vw;
+    font-size: 1.2rem;
   }
   .input {
     margin: 1vh;
@@ -205,7 +218,7 @@ export default {
     display: flex;
   }
   .button {
-    width: 0px;
+    width: 118px;
   }
   .disabledButton {
     width: 118px;
@@ -256,11 +269,20 @@ export default {
     width: 600px;
     align-items: center;
   }
+  input:hover {
+    /* white */
+    background: #ffffff;
+    border: 2px solid #0e70f1;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.25s ease-in-out;
+  }
   .input,
   .input-first,
   .input-last {
     height: 61px;
     width: 64px;
+    font-size: 2rem;
   }
   .input {
     margin: 5px;
@@ -335,11 +357,20 @@ export default {
     width: 600px;
     align-items: center;
   }
+  input:hover {
+    /* white */
+    background: #ffffff;
+    border: 2px solid #0e70f1;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.25s ease-in-out;
+  }
   .input,
   .input-first,
   .input-last {
     height: 61px;
     width: 64px;
+    font-size: 2rem;
   }
   .input {
     margin: 10px;
@@ -415,11 +446,20 @@ export default {
     width: 600px;
     align-items: center;
   }
+  input:hover {
+    /* white */
+    background: #ffffff;
+    border: 2px solid #0e70f1;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.25s ease-in-out;
+  }
   .input,
   .input-first,
   .input-last {
     height: 61px;
     width: 64px;
+    font-size: 2rem;
   }
   .input {
     margin: 10px;
@@ -487,11 +527,20 @@ export default {
     grid-column: 3 / 12;
     width: 445px;
   }
+  input:hover {
+    /* white */
+    background: #ffffff;
+    border: 2px solid #0e70f1;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.25s ease-in-out;
+  }
   .input,
   .input-first,
   .input-last {
     height: 61px;
     width: 64px;
+    font-size: 2rem;
   }
   .input {
     margin: 5px;
@@ -574,27 +623,19 @@ export default {
   text-overflow: ellipsis;
 }
 input:focus {
-  background: white;
+  background: #ffffff;
   border: 2px solid #0e70f1;
   box-sizing: border-box;
   border-radius: 8px;
 }
 
-input:hover {
-  /* white */
-  background: white;
-  border: 2px solid #0e70f1;
-  box-sizing: border-box;
-  border-radius: 8px;
-  transition: 0.25s ease-in-out;
-}
 .input,
 .input-first,
 .input-last {
   text-align: center;
   font-family: Poppins;
   font-weight: 900;
-  font-size: 2rem;
+
   /* lightGray */
 
   background: #f5f6f6;
