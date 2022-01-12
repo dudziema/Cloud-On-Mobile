@@ -1,10 +1,7 @@
 <template>
   <div class="container">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <div class="column1" id="rectangle"><Rectangle></Rectangle></div>
-    <!-- <div class="column" id="rectangle"><Rectangle></Rectangle></div> -->
     <div class="column2" id="passcode"><Passcode></Passcode></div>
-    <!-- <img src="../assets/buttons/Apple button.png" /> -->
   </div>
 </template>
 
