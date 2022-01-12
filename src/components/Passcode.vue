@@ -326,7 +326,7 @@ export default {
     grid-column: 3 /9;
     text-align: center;
     font-size: 16px;
-        margin-right: 5vw;
+    margin-right: 5vw;
   }
   .passcode-inputs {
     margin-top: 1vw;
@@ -556,7 +556,6 @@ export default {
 
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
-
 
   /* Body/16/Regular */
   font-family: Poppins;
