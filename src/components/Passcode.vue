@@ -165,7 +165,6 @@ export default {
 </script>
 <style scoped>
 @media screen and (min-width: 0px) and (max-width: 576px) {
-
   .enter {
     grid-column: 1 / 12;
     font-size: 24px;
@@ -207,7 +206,7 @@ export default {
     grid-column: 1 / 12;
     margin-top: 5vw;
     justify-content: center;
-    display:flex;
+    display: flex;
   }
   .button {
     width: 0px;
@@ -223,7 +222,7 @@ export default {
   .appstore-button {
     grid-column: 10/10;
     width: 20vw;
-    margin-left:10vw;
+    margin-left: 10vw;
   }
   .google-button {
     grid-column: 4/5;
@@ -293,20 +292,20 @@ export default {
     width: 444px;
   }
   .stores {
-    grid-column: 3/9;
+    grid-column: 3/10;
     align-self: end;
 
     margin-left: 2vw;
   }
   .appstore-button {
     grid-column: 10/10;
-    width: 20vw;
-    margin-left:10vw;
+    width: 10vw;
+    margin-left: 5vw;
   }
   .google-button {
     grid-column: 4/6;
     margin-left: 0rem;
-    width: 20vw;
+    width: 10vw;
   }
   img {
     width: 5vw;
@@ -369,7 +368,7 @@ export default {
   .disabledButton {
     width: 500px;
   }
- .stores {
+  .stores {
     grid-column: 3/9;
     align-self: end;
 
@@ -378,7 +377,7 @@ export default {
   .appstore-button {
     grid-column: 6/10;
     width: 10vw;
-    margin-left:3vw;
+    margin-left: 3vw;
   }
   .google-button {
     grid-column: 4/6;
@@ -455,7 +454,7 @@ export default {
   .appstore-button {
     grid-column: 10/10;
     width: 11vw;
-    margin-left:2vw;
+    margin-left: 2vw;
   }
   .google-button {
     grid-column: 4/5;
@@ -517,7 +516,7 @@ export default {
   .disabledButton {
     width: 435px;
   }
- .stores {
+  .stores {
     grid-column: 3/9;
     align-self: end;
 
@@ -526,7 +525,7 @@ export default {
   .appstore-button {
     grid-column: 6/10;
     width: 7vw;
-    margin-left:3vw;
+    margin-left: 3vw;
   }
   .google-button {
     grid-column: 4/6;
