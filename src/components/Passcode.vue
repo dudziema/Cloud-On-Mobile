@@ -69,9 +69,7 @@
 
     <div class="stores">
       <br />
-      <Playstore class="google-button" /><img :src="image" /><Appstore
-        class="appstore-button"
-      /><img :src="image" />
+      <Playstore class="google-button" /><Appstore class="appstore-button" />
     </div>
   </div>
 </template>
@@ -79,7 +77,6 @@
 <script>
 import Appstore from "./Appstore.vue";
 import Playstore from "./Playstore.vue";
-import InProgress from "@/assets/images/inprogress.png";
 
 export default {
   components: {
@@ -88,7 +85,6 @@ export default {
   },
   data() {
     return {
-      image: InProgress,
       isComplete: false,
     };
   },
@@ -222,11 +218,11 @@ export default {
   .appstore-button {
     grid-column: 10/10;
     width: 20vw;
-    margin-left: 10vw;
+    margin-left: 20vw;
   }
   .google-button {
     grid-column: 4/5;
-    margin-left: 3rem;
+    margin-left: 20vw;
     width: 20vw;
   }
   img {
@@ -251,6 +247,7 @@ export default {
     grid-column: 3 /9;
     text-align: center;
     font-size: 16px;
+    margin-right: 5vw;
   }
   .passcode-inputs {
     margin-top: 1vw;
@@ -292,25 +289,26 @@ export default {
     width: 444px;
   }
   .stores {
-    grid-column: 3/10;
+    grid-column: 3/8;
     align-self: end;
-
-    margin-left: 2vw;
+    margin-left: 5vw;
+    margin-top: 4vw;
   }
   .appstore-button {
-    grid-column: 10/10;
-    width: 10vw;
-    margin-left: 5vw;
+    grid-column: 6/10;
+    width: 100px;
+    margin-left: 50px;
   }
   .google-button {
     grid-column: 4/6;
-    margin-left: 0rem;
-    width: 10vw;
+    margin-left: 2vw;
+    width: 105px;
+    margin-left: 20px;
   }
   img {
-    width: 5vw;
-    height: 5vw;
-    padding-left: 1rem;
+    width: 30px;
+
+    padding-left: 0.25rem;
     opacity: 0.5;
     padding-bottom: 1rem;
   }
@@ -328,6 +326,7 @@ export default {
     grid-column: 3 /9;
     text-align: center;
     font-size: 16px;
+        margin-right: 5vw;
   }
   .passcode-inputs {
     margin-top: 1vw;
@@ -371,45 +370,48 @@ export default {
   .stores {
     grid-column: 3/9;
     align-self: end;
-
     margin-left: 2vw;
+    margin-top: 4vw;
   }
   .appstore-button {
     grid-column: 6/10;
-    width: 10vw;
-    margin-left: 3vw;
+    width: 100px;
+    margin-left: 100px;
   }
   .google-button {
     grid-column: 4/6;
-    margin-left: 0rem;
-    width: 10vw;
+    margin-left: 2vw;
+    width: 105px;
+    margin-left: 60px;
   }
   img {
-    width: 5vw;
-    height: 5vw;
-    padding-left: 1rem;
+    width: 30px;
+
+    padding-left: 0.25rem;
     opacity: 0.5;
     padding-bottom: 1rem;
   }
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .enter {
-    grid-column: 4 / 9;
+    grid-column: 3 / 8;
     font-size: 36px;
     align-self: end;
-
     text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 3vw;
   }
   .instruction {
     align-items: center;
-    grid-column: 4 /9;
+    grid-column: 3 /8;
     text-align: center;
     font-size: 16px;
+    margin-right: 5vw;
   }
   .passcode-inputs {
     margin-top: 1vw;
-    grid-column: 4 /12;
-    margin-left: 2vw;
+    grid-column: 3 /12;
     width: 600px;
     align-items: center;
   }
@@ -431,13 +433,12 @@ export default {
     margin-right: 0vw;
   }
   .info {
-    grid-column: 4 / 10;
+    grid-column: 3 / 9;
   }
   .button-position {
-    grid-column: 4 / 9;
+    grid-column: 3 / 8;
     align-self: end;
     margin-top: 3vw;
-    margin-left: 2vw;
   }
   .button {
     width: 500px;
@@ -446,25 +447,25 @@ export default {
     width: 500px;
   }
   .stores {
-    grid-column: 4/9;
+    grid-column: 3/8;
     align-self: end;
 
-    margin-left: 2vw;
+    margin-top: 4vw;
   }
   .appstore-button {
-    grid-column: 10/10;
-    width: 11vw;
-    margin-left: 2vw;
+    grid-column: 6/10;
+    width: 100px;
+    margin-left: 100px;
   }
   .google-button {
-    grid-column: 4/5;
-    margin-left: 3rem;
-    width: 11vw;
+    grid-column: 4/6;
+    margin-left: 60px;
+    width: 105px;
   }
   img {
-    width: 5vw;
-    height: 5vw;
-    padding-left: 1rem;
+    width: 30px;
+
+    padding-left: 0.25rem;
     opacity: 0.5;
     padding-bottom: 1rem;
   }
@@ -519,25 +520,16 @@ export default {
   .stores {
     grid-column: 3/9;
     align-self: end;
-
-    margin-left: 2vw;
   }
   .appstore-button {
     grid-column: 6/10;
-    width: 7vw;
-    margin-left: 3vw;
+    width: 100px;
+    margin-left: 140px;
   }
   .google-button {
     grid-column: 4/6;
-    margin-left: 0rem;
-    width: 7vw;
-  }
-  img {
-    width: 2vw;
-    height: 2vw;
-    padding-left: 1rem;
-    opacity: 0.5;
-    padding-bottom: 1rem;
+    width: 110px;
+    margin-left: 3vw;
   }
 }
 
@@ -565,7 +557,7 @@ export default {
 .instruction {
   /* To connect with your device, please enter the access code displayed in the mobile app. */
 
-  margin-right: auto;
+
   /* Body/16/Regular */
   font-family: Poppins;
   font-style: normal;
