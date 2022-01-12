@@ -1,8 +1,8 @@
 <template>
-  <div class="column1" id="rectangle"><Rectangle></Rectangle></div>
-  <!-- <div class="column" id="rectangle"><Rectangle></Rectangle></div> -->
-  <div class="column2" id="passcode"><Passcode></Passcode></div>
-  <!-- <img src="../assets/buttons/Apple button.png" /> -->
+  <div class="container">
+    <div class="column1" id="rectangle"><Rectangle></Rectangle></div>
+    <div class="column2" id="passcode"><Passcode></Passcode></div>
+  </div>
 </template>
 
 <script>
@@ -19,25 +19,52 @@ export default {
 };
 </script>
 <style scoped>
-#rectangle {
-  background-color: #f5faff;
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  #rectangle {
+    width: 0px;
+  }
 }
 
-#passcode {
-  background-color: white;
-  margin: 0rem;
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  #rectangle {
+    width: 0px;
+  }
 }
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  #rectangle {
+    width: 0px;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  #rectangle {
+    width: 0px;
+  }
+  #passcode {
+    background-color: white;
+    margin: 0rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #rectangle {
+    background-color: #f5faff;
+  }
+  #passcode {
+    background-color: white;
+    margin: 0rem;
+  }
+  .column1 {
+    float: left;
+    width: 40%;
+    min-height: 100%;
+    margin: 0;
+  }
+
+  .column2 {
+    float: right;
+    width: 60%;
+    min-height: 100%;
+  }
+}
+
 /* Create two equal columns that floats next to each other */
-.column1 {
-  float: left;
-  width: 40%;
-  min-height: 100%;
-  margin: 0;
-}
-
-.column2 {
-  float: right;
-  width: 60%;
-  min-height: 100%;
-}
 </style>
