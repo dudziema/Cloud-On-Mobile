@@ -88,8 +88,20 @@ export default {
     });
 
     var my_this = this;
+    this.$addWsOnMessageListenerAuth(onAuthMsg);
     this.$addWsOnMessageListener(loadEntries);
-    this.$wsListFiles();
+    this.$webSocketsConnect();
+
+    function onAuthMsg(obj) {
+      if (obj.result == -1) {
+        my_this.$router.push({
+          name: "Home",
+        });
+      } else if (obj.result == 0) {
+        my_this.$wsListFiles();
+      }
+    }
+
     function loadEntries(msg) {
       console.log(msg);
       my_this.entries = msg.payload;

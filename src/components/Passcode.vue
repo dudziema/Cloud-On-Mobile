@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div id="flashMessage" v-if="GStore.flashMessage">
+      {{ GStore.flashMessage }}
+    </div>
     <div class="enter">Enter the access code</div>
     <div class="instruction">
       To connect with your device, please enter the access code displayed in the
@@ -66,17 +69,12 @@
     </div>
 
     <div class="button-position">
-      <router-link
-        style="text-decoration: none; color: inherit"
-        to="/phoneFiles"
-        ><button
-          :class="{ button: isComplete, disabledButton: !isComplete }"
-          v-on:click="send()"
-        >
-          <span class="connect">Connect</span>
-        </button>
-      </router-link>
-      <router-view />
+      <button
+        :class="{ button: isComplete, disabledButton: !isComplete }"
+        v-on:click="send()"
+      >
+        <span class="connect">Connect</span>
+      </button>
     </div>
 
     <div class="stores">
@@ -98,8 +96,10 @@ export default {
   data() {
     return {
       isComplete: false,
+      isLoggedIn: false,
     };
   },
+  inject: ["GStore"],
   methods: {
     changeButton() {
       this.isComplete = true;
@@ -133,9 +133,9 @@ export default {
         code += myNodeList[i].value;
       }
       code = parseInt(code);
-      let msg = { type: "web-loging-with-code", code: code };
-      this.$webSocketsSend(msg);
+      this.$webSocketsSendAuth(code);
     },
+
     connect() {
       this.$webSocketsConnect();
     },
@@ -168,7 +168,23 @@ export default {
     }
   },
 
-  computed: {},
+  created() {
+    var my_this = this;
+    this.$addWsOnMessageListenerAuth(checkCorrect);
+    function checkCorrect(obj) {
+      if (obj.result == -1) {
+        my_this.GStore.flashMessage = "Wrong code :( Try again!";
+        setTimeout(() => {
+          my_this.GStore.flashMessage = "";
+        }, 3000);
+      } else if (obj.result == 0) {
+        my_this.$removeLastWsOnMessageListenerAuth();
+        my_this.$router.push({
+          name: "PhoneFiles",
+        });
+      }
+    }
+  },
 };
 </script>
 <style scoped>
@@ -586,6 +602,25 @@ export default {
   display: grid;
   grid-template: repeat(5, 1fr) / repeat(10, 1fr);
   grid-gap: 3px;
+}
+@keyframes bluefade {
+  from {
+    background: #f5faff;
+  }
+  to {
+    background: transparent;
+  }
+}
+#flashMessage {
+  grid-column: 1/12;
+  animation-name: bluefade;
+  animation-duration: 3s;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 900;
+  text-align: center;
+  height: 30px;
+  border-radius: 8px;
 }
 
 .enter {

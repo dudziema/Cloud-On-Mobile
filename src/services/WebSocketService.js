@@ -2,6 +2,8 @@ let webSocketsService = {};
 var ws = null;
 var files = [];
 var wsOnmessageListeners = [];
+var wsOnmessageListenersAuth = [];
+var storeCode = null;
 
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
@@ -34,7 +36,6 @@ function base64ToArrayBuffer(base64) {
 }
 function saveByteArray(reportName, byte) {
   let mimeType = "application/octet-stream";
-  // let mimeType = mimeTypes[reportName.lastIndexOf(".")+1]
   var blob = new Blob([byte], { type: mimeType });
   var link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
@@ -47,14 +48,16 @@ function onDownloadedFileFromPhone(message) {
   saveByteArray(message.payload.filename, decoded_bytes);
 }
 
-// var demoEnabled = false;
-
 webSocketsService.install = function (Vue) {
   Vue.config.globalProperties.$webSocketsConnect = function () {
     console.log("Starting Connection to WebSocket Server");
     ws = new WebSocket("wss://cloudon.cc:9292/");
     this.ws = ws;
+    var my_this = this;
     ws.onopen = () => {
+      if (storeCode != null) {
+        my_this.$webSocketsSendAuth(storeCode);
+      }
       console.log("Now is connected!");
     };
 
@@ -63,10 +66,8 @@ webSocketsService.install = function (Vue) {
       parseMessage(received_message);
     };
 
-    ws.onclose = (event) => {
-      if (event) {
-        alert("Connection is closed.");
-      }
+    ws.onclose = () => {
+      console.log("socket closed");
     };
 
     ws.onerror = (error) => {
@@ -76,31 +77,32 @@ webSocketsService.install = function (Vue) {
   };
 
   Vue.config.globalProperties.$webSocketsDisconnect = () => {
-    // Our custom disconnect event
     ws.close();
   };
-  Vue.config.globalProperties.$webSocketsSend = (msg) => {
+
+  Vue.config.globalProperties.$webSocketsSendAuth = (code) => {
+    storeCode = code;
+
+    let msg = { type: "web-loging-with-code", code: code };
     ws.send(JSON.stringify(msg));
   };
 
-  // todo: rename to: parseListFiles()
   Vue.config.globalProperties.$parseListFiles = function (obj) {
     let fileList = obj.payload;
     files = fileList;
     if (isDownloadable(files.filename) && files.dir) {
       var link = document.createElement("a");
-      // link.setAttribute('href', "http://www.ilovethismusic.com");
       link.setAttribute("target", "_blank");
     }
   };
 
   Vue.config.globalProperties.$wsDownloadFile = function (path) {
     var msg = { type: "forward", command: "download", path: path };
-    this.$webSocketsSend(msg);
+    sendMsgToWs(msg);
   };
   Vue.config.globalProperties.$wsDeleteFile = function (path) {
     var msg = { type: "forward", command: "remove", path: path };
-    this.$webSocketsSend(msg);
+    sendMsgToWs(msg);
   };
 
   Vue.config.globalProperties.$GetSavedFiles = function () {
@@ -115,6 +117,15 @@ webSocketsService.install = function (Vue) {
     listenerFunction
   ) {
     wsOnmessageListeners.push(listenerFunction);
+  };
+  Vue.config.globalProperties.$addWsOnMessageListenerAuth = function (
+    listenerFunction
+  ) {
+    wsOnmessageListenersAuth.push(listenerFunction);
+  };
+
+  Vue.config.globalProperties.$removeLastWsOnMessageListenerAuth = function () {
+    wsOnmessageListenersAuth.pop();
   };
 
   Vue.config.globalProperties.$sendFile = (file) => {
@@ -134,14 +145,18 @@ webSocketsService.install = function (Vue) {
   */
   function parseMessage(received_msg) {
     let obj = JSON.parse(received_msg);
-    if (obj.type == "web-loging-with-code" && obj.result == 0) {
-      // wsListFiles();
+    if (obj.type == "web-loging-with-code") {
+      if (wsOnmessageListenersAuth.length != 0) {
+        for (var i = 0; i < wsOnmessageListenersAuth.length; i++) {
+          wsOnmessageListenersAuth[i](obj);
+        }
+      }
     } else if (obj.command == "list-files") {
       // todo: potential js injection
       Vue.config.globalProperties.$parseListFiles(obj);
       if (wsOnmessageListeners.length != 0) {
-        for (var i = 0; i < wsOnmessageListeners.length; i++) {
-          wsOnmessageListeners[i](obj);
+        for (var k = 0; k < wsOnmessageListeners.length; k++) {
+          wsOnmessageListeners[k](obj);
         }
       }
     } else if (obj.command == "download") {
