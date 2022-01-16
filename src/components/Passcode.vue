@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div id="flashMessage" v-if="GStore.flashMessage">
+      {{ GStore.flashMessage }}
+    </div>
     <div class="enter">Enter the access code</div>
     <div class="instruction">
       To connect with your device, please enter the access code displayed in the
@@ -66,17 +69,12 @@
     </div>
 
     <div class="button-position">
-      <router-link
-        style="text-decoration: none; color: inherit"
-        to="/phoneFiles"
-        ><button
-          :class="{ button: isComplete, disabledButton: !isComplete }"
-          v-on:click="send()"
-        >
-          <span class="connect">Connect</span>
-        </button>
-      </router-link>
-      <router-view />
+      <button
+        :class="{ button: isComplete, disabledButton: !isComplete }"
+        v-on:click="connect()"
+      >
+        <span class="connect">Connect</span>
+      </button>
     </div>
 
     <div class="stores">
@@ -98,8 +96,11 @@ export default {
   data() {
     return {
       isComplete: false,
+      isLoggedIn: false,
+      passcode: null,
     };
   },
+  inject: ["GStore"],
   methods: {
     changeButton() {
       this.isComplete = true;
@@ -126,25 +127,25 @@ export default {
       return !isAnyEmpty;
     },
 
-    send() {
-      let code = "";
+    connect() {
+      var code = "";
       let myNodeList = document.querySelectorAll("#passcode > *[id]");
       for (let i = 0; i < myNodeList.length; i++) {
         code += myNodeList[i].value;
       }
-      code = parseInt(code);
-      let msg = { type: "web-loging-with-code", code: code };
-      this.$webSocketsSend(msg);
+      this.passcode = parseInt(code);
+      let this_passcode = this;
+      this.$webSocketsConnect(
+        function () {
+          this_passcode.$webSocketsSendAuth(this_passcode.passcode);
+        },
+        function () {
+          alert("Server is closed. Try again later.");
+        }
+      );
     },
-    connect() {
-      this.$webSocketsConnect();
-    },
-    // disconnect() {
-    //   this.$webSocketsDisconnect();
-    // },
   },
   mounted: function () {
-    this.connect();
     const inputs = document.querySelectorAll("#passcode > *[id]");
 
     for (let i = 0; i < inputs.length; i++) {
@@ -168,7 +169,27 @@ export default {
     }
   },
 
-  computed: {},
+  created() {
+    var this_passcode = this;
+    this.$addWsOnMessageListenerAuth(function (obj) {
+      if (obj.result == -1) {
+        // Wrong passcode
+        this_passcode.$webSocketsDisconnect();
+        this_passcode.GStore.flashMessage = "Wrong code :( Try again!";
+        setTimeout(() => {
+          this_passcode.GStore.flashMessage = "";
+        }, 3000);
+      } else if (obj.result == 0) {
+        // Authorized correctly
+        this_passcode.$webSocketsDisconnect();
+        this_passcode.$removeLastWsOnMessageListenerAuth();
+        this_passcode.$router.push({
+          name: "PhoneFiles",
+          params: { passcode: this_passcode.passcode },
+        });
+      }
+    });
+  },
 };
 </script>
 <style scoped>
@@ -586,6 +607,25 @@ export default {
   display: grid;
   grid-template: repeat(5, 1fr) / repeat(10, 1fr);
   grid-gap: 3px;
+}
+@keyframes bluefade {
+  from {
+    background: #f5faff;
+  }
+  to {
+    background: transparent;
+  }
+}
+#flashMessage {
+  grid-column: 1/12;
+  animation-name: bluefade;
+  animation-duration: 3s;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 900;
+  text-align: center;
+  height: 30px;
+  border-radius: 8px;
 }
 
 .enter {

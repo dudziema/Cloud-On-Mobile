@@ -1,25 +1,14 @@
 <template>
   <div class="selectfile">
     <label class="select" for="selectFile">+ Add new file</label>
-    <input
-      ref="file"
-      type="file"
-      id="selectFile"
-      class="selectFiles"
-      @change="previewFiles"
-    />
+    <input ref="file" type="file" id="selectFile" class="selectFiles" />
   </div>
 </template>
 
 <script>
 export default {
   name: "SelectFile",
-  methods: {
-    previewFiles(event) {
-      console.log("selfile");
-      console.log(event.target.files);
-    },
-  },
+  methods: {},
 };
 </script>
 <style scoped>

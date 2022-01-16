@@ -72,6 +72,7 @@ export default {
         },
       ],
       entries: [],
+      passcode: null,
     };
   },
   methods: {
@@ -86,14 +87,32 @@ export default {
     this.entries.forEach((element) => {
       element.onHover = false;
     });
-
+    this.passcode = parseInt(this.$route.params.passcode)
     var my_this = this;
-    this.$addWsOnMessageListener(loadEntries);
-    this.$wsListFiles();
-    function loadEntries(msg) {
-      console.log(msg);
+    this.$addWsOnMessageListenerAuth(function onAuthMsg(obj) {
+      if (obj.result == -1) {
+        my_this.$router.push({
+          name: "Home",
+        });
+      } else if (obj.result == 0) {
+        my_this.$wsListFiles();
+      }
+    });
+
+    this.$addWsOnMessageListener(function loadEntries(msg) {
       my_this.entries = msg.payload;
-    }
+    });
+
+    let this_fileslist = this;
+    this.$webSocketsConnect(
+      function () {
+        this_fileslist.$webSocketsSendAuth(this_fileslist.passcode);
+      },
+      function () {
+        // Failure
+        // Alert cant connect to the server
+      }
+    );
   },
 };
 </script>
