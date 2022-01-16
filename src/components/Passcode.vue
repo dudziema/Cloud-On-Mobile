@@ -71,7 +71,7 @@
     <div class="button-position">
       <button
         :class="{ button: isComplete, disabledButton: !isComplete }"
-        v-on:click="send()"
+        v-on:click="connect()"
       >
         <span class="connect">Connect</span>
       </button>
@@ -97,6 +97,7 @@ export default {
     return {
       isComplete: false,
       isLoggedIn: false,
+      passcode: null,
     };
   },
   inject: ["GStore"],
@@ -126,25 +127,25 @@ export default {
       return !isAnyEmpty;
     },
 
-    send() {
-      let code = "";
+    connect() {
+      var code = "";
       let myNodeList = document.querySelectorAll("#passcode > *[id]");
       for (let i = 0; i < myNodeList.length; i++) {
         code += myNodeList[i].value;
       }
-      code = parseInt(code);
-      this.$webSocketsSendAuth(code);
+      this.passcode = parseInt(code);
+      let this_passcode = this;
+      this.$webSocketsConnect(
+        function () {
+          this_passcode.$webSocketsSendAuth(this_passcode.passcode);
+        },
+        function () {
+          alert("Server is closed. Try again later.");
+        }
+      );
     },
-
-    connect() {
-      this.$webSocketsConnect();
-    },
-    // disconnect() {
-    //   this.$webSocketsDisconnect();
-    // },
   },
   mounted: function () {
-    this.connect();
     const inputs = document.querySelectorAll("#passcode > *[id]");
 
     for (let i = 0; i < inputs.length; i++) {
@@ -169,21 +170,23 @@ export default {
   },
 
   created() {
-    var my_this = this;
-    this.$addWsOnMessageListenerAuth(checkCorrect);
-    function checkCorrect(obj) {
-      if (obj.result == -1) {
-        my_this.GStore.flashMessage = "Wrong code :( Try again!";
+    var this_passcode = this;
+    this.$addWsOnMessageListenerAuth(function (obj) {
+      if (obj.result == -1) { // Wrong passcode
+        this_passcode.$webSocketsDisconnect();
+        this_passcode.GStore.flashMessage = "Wrong code :( Try again!";
         setTimeout(() => {
-          my_this.GStore.flashMessage = "";
+          this_passcode.GStore.flashMessage = "";
         }, 3000);
-      } else if (obj.result == 0) {
-        my_this.$removeLastWsOnMessageListenerAuth();
-        my_this.$router.push({
+      } else if (obj.result == 0) { // Authorized correctly
+        this_passcode.$webSocketsDisconnect();
+        this_passcode.$removeLastWsOnMessageListenerAuth();
+        this_passcode.$router.push({
           name: "PhoneFiles",
+          params: { passcode: this_passcode.passcode },
         });
       }
-    }
+    });
   },
 };
 </script>

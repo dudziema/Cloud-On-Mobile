@@ -77,8 +77,6 @@ export default {
       }
     },
     selectedFile(event) {
-      console.log("selfile_phone");
-      console.log(event.target.files);
       this.$sendFile(event.target.files[0]);
     },
   },

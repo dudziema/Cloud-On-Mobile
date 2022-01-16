@@ -3,7 +3,7 @@ var ws = null;
 var files = [];
 var wsOnmessageListeners = [];
 var wsOnmessageListenersAuth = [];
-var storeCode = null;
+var shouldDisconnect = false;
 
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
@@ -49,16 +49,16 @@ function onDownloadedFileFromPhone(message) {
 }
 
 webSocketsService.install = function (Vue) {
-  Vue.config.globalProperties.$webSocketsConnect = function () {
+  Vue.config.globalProperties.$webSocketsConnect = function (
+    successHandler,
+    failureHandler
+  ) {
     console.log("Starting Connection to WebSocket Server");
     ws = new WebSocket("wss://cloudon.cc:9292/");
     this.ws = ws;
-    var my_this = this;
     ws.onopen = () => {
-      if (storeCode != null) {
-        my_this.$webSocketsSendAuth(storeCode);
-      }
-      console.log("Now is connected!");
+      shouldDisconnect = false;
+      successHandler();
     };
 
     ws.onmessage = (event) => {
@@ -66,8 +66,11 @@ webSocketsService.install = function (Vue) {
       parseMessage(received_message);
     };
 
-    ws.onclose = () => {
-      console.log("socket closed");
+    ws.onclose = (event) => {
+      console.log("socket closed" + JSON.stringify(event));
+      if (shouldDisconnect == false) {
+        failureHandler();
+      }
     };
 
     ws.onerror = (error) => {
@@ -77,12 +80,11 @@ webSocketsService.install = function (Vue) {
   };
 
   Vue.config.globalProperties.$webSocketsDisconnect = () => {
+    shouldDisconnect = true;
     ws.close();
   };
 
   Vue.config.globalProperties.$webSocketsSendAuth = (code) => {
-    storeCode = code;
-
     let msg = { type: "web-loging-with-code", code: code };
     ws.send(JSON.stringify(msg));
   };
