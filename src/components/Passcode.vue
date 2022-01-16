@@ -172,13 +172,15 @@ export default {
   created() {
     var this_passcode = this;
     this.$addWsOnMessageListenerAuth(function (obj) {
-      if (obj.result == -1) { // Wrong passcode
+      if (obj.result == -1) {
+        // Wrong passcode
         this_passcode.$webSocketsDisconnect();
         this_passcode.GStore.flashMessage = "Wrong code :( Try again!";
         setTimeout(() => {
           this_passcode.GStore.flashMessage = "";
         }, 3000);
-      } else if (obj.result == 0) { // Authorized correctly
+      } else if (obj.result == 0) {
+        // Authorized correctly
         this_passcode.$webSocketsDisconnect();
         this_passcode.$removeLastWsOnMessageListenerAuth();
         this_passcode.$router.push({
