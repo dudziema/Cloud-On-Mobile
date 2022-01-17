@@ -1,29 +1,34 @@
 <template>
   <div class="container">
-    <div class="logo"><Piglogo /></div>
-    <div class="button-select"><SelectFile @change="selectedFile" /></div>
+    <div class="menu">
+      <div class="logo"><Piglogo /></div>
+      <div class="button-select"><SelectFile @change="selectedFile" /></div>
 
-    <div class="all-files"><Grid class="grid" />All files</div>
-    <div class="recent-files">
-      <Clock class="clock" /> Recent files<img :src="image" />
-    </div>
-    <div class="connected-with">
-      <div class="connected-text">Connected with</div>
-      <div class="phoneName">
-        <PhoneIcon class="phoneicon" />{{ phoneName }}<img :src="image" />
+      <div class="all-files"><Grid class="grid" />All files</div>
+      <div class="recent-files">
+        <Clock class="clock" /> Recent files<img :src="image" />
       </div>
-    </div>
-    <div class="settings">
-      <SettingsIcon class="settingsicon" />Settings <img :src="image" />
-    </div>
-    <div class="disconnect">
-      <LogOut class="logout" />Disconnect <img :src="image" />
+      <div class="connected-with">
+        <div class="connected-text">Connected with</div>
+        <div class="phoneName">
+          <PhoneIcon class="phoneicon" />{{ phoneName }}<img :src="image" />
+        </div>
+      </div>
+      <div class="settings">
+        <SettingsIcon class="settingsicon" />Settings <img :src="image" />
+      </div>
+
+      <div class="disconnect">
+        <LogOut class="logout" />Disconnect <img :src="image" />
+      </div>
     </div>
     <!-- <div class="searchbox">
       <input id="search" type="search" placeholder="search" />
     </div> -->
-    <div class="columntitle">All files</div>
-    <div class="filelist"><FilesList @drop="dropHandler" /></div>
+    <div class="table">
+      <div class="columntitle">All files</div>
+      <div class="filelist"><FilesList @drop="dropHandler" /></div>
+    </div>
   </div>
 </template>
 
@@ -83,244 +88,555 @@ export default {
 };
 </script>
 <style scoped>
-img {
-  width: 1.5rem;
-  padding-left: 1rem;
-  opacity: 0.5;
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  .logo {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 20px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 4rem;
+    margin-left: 0.9rem;
+    height: 3rem;
+  }
+  .grid {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  .all-files {
+    top: 5rem;
+    height: 3rem;
+    margin-left: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .clock {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  .recent-files {
+    top: 7rem;
+    position: fixed;
+    height: 3rem;
+    font-size: 0.6rem;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 4rem;
+    height: 2rem;
+
+    width: 7rem;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .phoneName {
+    font-size: 0.7rem;
+  }
+  .settings {
+    width: 100%;
+    bottom: 2rem;
+    height: 2rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    font-size: 0.6rem;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  img {
+    width: 0.6rem;
+    padding-left: 0.4rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 8rem;
+    margin-top: 3rem;
+    width: 20rem;
+    font-size: 1rem;
+  }
+  .filelist {
+    margin-top: 9rem;
+    margin-left: 8rem;
+    width: 80vw;
+  }
 }
-.container {
-  display: grid;
-  grid-template: repeat(12, 1fr) / repeat(12, 1fr);
-  grid-gap: 3px;
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .logo {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 20px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 4rem;
+    margin-left: 0.9rem;
+    height: 3rem;
+  }
+  .grid {
+    padding: 0.5rem;
+    width: 1.2rem;
+  }
+  .all-files {
+    top: 7rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .clock {
+    padding: 0.5rem;
+    width: 1.2rem;
+  }
+  .recent-files {
+    top: 10rem;
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+    width: 1.2rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 6rem;
+    height: 3rem;
+    width: 100%;
+    width: 9.5rem;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .phoneName {
+    font-size: 0.8rem;
+  }
+  .settings {
+    width: 100%;
+    bottom: 3rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+  }
+  img {
+    width: 1.5rem;
+    padding-left: 1rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 12rem;
+    width: 20rem;
+    font-size: 1rem;
+    padding-top: 3rem;
+  }
+  .filelist {
+    margin-top: 9rem;
+    margin-left: 12rem;
+    width: 80vw;
+  }
 }
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .logo {
+    margin-bottom: 10px;
+    width: 90px;
+    height: 40px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 6rem;
+    margin-left: 0.5rem;
+  }
+  .grid {
+    padding: 0.5rem;
+  }
+  .all-files {
+    top: 9.5rem;
+    height: 3vh;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .clock {
+    padding: 0.5rem;
+  }
+  .recent-files {
+    top: 12rem;
+    position: fixed;
+    height: 3vh;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 6rem;
+    height: 3rem;
+    width: 100%;
+    width: 9.5rem;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .phoneName {
+    font-size: 0.8rem;
+  }
+  .settings {
+    width: 100%;
+    bottom: 3rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+  }
+  img {
+    width: 1.5rem;
+    padding-left: 1rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 15rem;
+    margin-top: 3rem;
+    width: 20rem;
+    font-size: 2rem;
+  }
+  .filelist {
+    margin-top: 9rem;
+    margin-left: 15rem;
+    width: 80vw;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .logo {
+    margin-bottom: 10px;
+    width: 80px;
+    height: 30px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 6rem;
+    margin-left: 0.5rem;
+  }
+  .grid {
+    padding: 0.5rem;
+  }
+  .all-files {
+    top: 9rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+  }
+  .clock {
+    padding: 0.5rem;
+  }
+  .recent-files {
+    top: 12rem;
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 6rem;
+    height: 3rem;
+    width: 100%;
+    width: 216px;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .phoneName {
+    font-size: 0.8rem;
+  }
+  .settings {
+    width: 100%;
+    bottom: 3rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+  }
+  img {
+    width: 1.5rem;
+    padding-left: 1rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 15rem;
+    margin-top: 3rem;
+    width: 20rem;
+    font-size: 2rem;
+  }
+  .filelist {
+    margin-top: 9rem;
+    margin-left: 15rem;
+    width: 80vw;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .menu {
+    grid-area: menu;
+  }
+  .logo {
+    margin-bottom: 10px;
+    width: 90px;
+    height: 40px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 6rem;
+    margin-left: 0.5rem;
+  }
+  .grid {
+    padding: 0.5rem;
+  }
+  .all-files {
+    top: 9rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 16px;
+  }
+  .clock {
+    padding: 0.5rem;
+  }
+  .recent-files {
+    top: 12rem;
+
+    height: 3rem;
+    width: 100%;
+    font-size: 16px;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 6rem;
+    height: 3rem;
+    width: 100%;
+    width: 216px;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 12px;
+  }
+  .phoneName {
+    font-size: 14px;
+  }
+  .settings {
+    width: 100%;
+    bottom: 3rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 16px;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    font-size: 16px;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+  }
+  img {
+    width: 1.5rem;
+    padding-left: 1rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 15rem;
+
+    width: 20rem;
+    font-size: 2rem;
+    padding-top: 3rem;
+  }
+  .filelist {
+    margin-top: 9rem;
+    margin-left: 15rem;
+    width: 80vw;
+  }
+}
+
 .logo {
-  grid-row: 1/1;
-  grid-column: 2/3;
-
-  /* logo */
-
-  position: absolute;
-  width: 90px;
-  height: 40px;
-  left: 25px;
-  top: 24px;
-
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 40px;
-  /* identical to box height, or 167% */
-
+  position: fixed;
   display: flex;
   align-items: center;
-  letter-spacing: -0.3px;
-
-  /* black */
-
-  color: #0c0c0c;
 }
 
 .button-select {
-  grid-row: 3/3;
-  grid-column: 1 / span 2;
-  margin-left: 0.5rem;
+  position: fixed;
 }
-.grid {
-  padding: 0.5rem;
-}
+
 .all-files {
-  grid-row: 4/5;
-  grid-column: 1/3;
-  padding-left: 0%;
-  /* Body/16/Bold */
-  margin-left: 0.5rem;
+  font-weight: 900;
+  line-height: 24px;
   font-family: Poppins;
   font-style: normal;
-  font-weight: 900;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height, or 150% */
-
+  position: fixed;
   display: flex;
   align-items: center;
   letter-spacing: 0.003em;
-
-  /* primary/100 */
-
   color: #0e70f1;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
 }
 .clock {
-  padding: 0.5rem;
   color: #0c0c0c;
 }
 .recent-files {
-  grid-row: 5/5;
-  grid-column: 1/3;
-  /* Body/16/Regular */
-  margin-left: 0.5rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
   line-height: 24px;
-  /* identical to box height, or 150% */
-
+  position: fixed;
   display: flex;
   align-items: center;
   letter-spacing: 0.003em;
-
-  /* black */
-
   color: #0c0c0c;
 }
-.phoneicon {
-  padding: 0.5rem;
-}
+
 .connected-with {
-  grid-row: 10/10;
-  grid-column: 1/2;
-  /* container */
-
-  width: 216px;
-  height: 64px;
-  margin-left: 0.5rem;
-  /* primary/10 */
-
+  overflow: hidden;
+  position: fixed;
   background: #f5faff;
   border-radius: 8px;
-
-  /* Connected with */
-  display: block;
-  /* Caption */
-
   font-family: Poppins;
   font-style: normal;
   font-weight: bold;
-  font-size: 12px;
   line-height: 16px;
-  /* identical to box height, or 133% */
-
   color: #000000;
-
   opacity: 0.6;
 }
 .connected-text {
   padding-left: 0.5rem;
 }
 .phoneName {
-  /* Body/14/Regular */
   align-self: end;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
   line-height: 24px;
-  /* identical to box height, or 171% */
-
   display: flex;
   align-items: center;
   letter-spacing: 0.003em;
-
-  /* primary/100 */
-
   color: #0e70f1;
 }
-.settingsicon {
-  padding: 0.5rem;
-}
 .settings {
-  grid-row: 11/11;
-  grid-column: 1/3;
-  /* Settings */
-
-  margin-left: 0.5rem;
-
-  /* Body/16/Regular */
-
+  overflow: hidden;
+  position: fixed;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
   line-height: 24px;
-  /* identical to box height, or 150% */
-
   display: flex;
   align-items: center;
   letter-spacing: 0.003em;
-
-  /* black */
-
   color: #0c0c0c;
-}
-.logout {
-  padding: 0.5rem;
 }
 
 .disconnect {
-  grid-row: 12/12;
-  grid-column: 1/4;
-  margin-left: 0.5rem;
-
-  /* Body/16/Regular */
-
+  position: fixed;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
   line-height: 24px;
-  /* identical to box height, or 150% */
-
   display: flex;
   align-items: center;
   letter-spacing: 0.003em;
-
-  /* black */
-
   color: #0c0c0c;
 }
-.filelist {
-  grid-column: 2/12;
-  grid-row: 4/12;
-}
-.searchbox {
-  grid-column: 2/12;
-  grid-row: 1/1;
-}
-#search {
-  grid-column: 2/12;
-  grid-row: 1/1;
-  width: 40rem;
-  /* white */
 
-  background: #ffffff;
-  border-radius: 8px;
-  border-color: white;
-}
 .columntitle {
-  grid-column: 2/12;
-  grid-row: 2/2;
-  /* Heading/Title */
-
-  font-family: Poppins;
+  font-family: PoppinsBold;
   font-style: normal;
+  background-color: #fff;
+  position: fixed;
   font-weight: 600;
-  font-size: 36px;
   line-height: 48px;
-  /* identical to box height, or 133% */
-
-  display: flex;
   align-items: center;
   letter-spacing: -0.3px;
 
-  /* black */
-
+  width: 100%;
   color: #0c0c0c;
+}
+.filelist {
+  position: fixed;
 }
 </style>

@@ -10,8 +10,9 @@
     </div>
     <div class="passcode-inputs" id="passcode">
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input-first"
         id="input0"
         v-on:keyup="inputenter(0)"
@@ -19,8 +20,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input1"
         v-on:keyup="inputenter(1)"
@@ -28,8 +30,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input2"
         v-on:keyup="inputenter(2)"
@@ -37,8 +40,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input3"
         v-on:keyup="inputenter(3)"
@@ -47,7 +51,8 @@
       />
       <input
         autocomplete="off"
-        pattern="\d*"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input4"
         v-on:keyup="inputenter(4)"
@@ -55,8 +60,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input-last"
         id="input5"
         v-on:keyup="inputenter(5)"
@@ -79,7 +85,10 @@
 
     <div class="stores">
       <br />
-      <Playstore class="google-button" /><Appstore class="appstore-button" />
+      <Playstore class="google-button" /><a
+        href="https://apps.apple.com/app/id1605476909"
+        ><Appstore class="appstore-button"
+      /></a>
     </div>
   </div>
 </template>
@@ -531,7 +540,7 @@ export default {
     padding-bottom: 1rem;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1201px) {
   .enter {
     grid-column: 3 / 6;
     font-size: 230%;

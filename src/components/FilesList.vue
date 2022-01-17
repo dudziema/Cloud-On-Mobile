@@ -67,7 +67,11 @@ export default {
           field: "UPLOAD DATE",
         },
         {
-          label: "trash_download",
+          label: "download",
+          field: "",
+        },
+        {
+          label: "trash",
           field: "",
         },
       ],
@@ -117,6 +121,197 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  box-sizing: border-box;
+}
+.table {
+  width: 100%;
+  height: 100vh;
+  margin: 1%;
+}
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  .active-dropzone {
+    opacity: 0.25;
+    background-color: #fff;
+  }
+  .header {
+    font-size: 0.4em;
+    font-weight: 900;
+    letter-spacing: 0.005em;
+    line-height: 1.2rem;
+  }
+  th {
+    align-self: center;
+  }
+  tr {
+    width: 100%;
+  }
+  tr :nth-child(2) {
+    width: 20vw;
+  }
+  tr :nth-child(3) {
+    width: 10vw;
+  }
+  tr :nth-child(4) {
+    width: 8vw;
+    align-content: left;
+    position: flex;
+    white-space: nowrap;
+  }
+  tr :nth-child(5) {
+    width: 3vw;
+  }
+  tr :nth-child(6) {
+    width: 3vw;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .active-dropzone {
+    opacity: 0.25;
+    background-color: #fff;
+  }
+  .header {
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.005em;
+    line-height: 1.2rem;
+  }
+  th {
+    align-self: center;
+  }
+  tr {
+    width: 100%;
+  }
+  tr :nth-child(2) {
+    width: 33vw;
+  }
+  tr :nth-child(3) {
+    width: 8vw;
+  }
+  tr :nth-child(4) {
+    width: 8vw;
+    align-content: left;
+    position: flex;
+    white-space: nowrap;
+  }
+  tr :nth-child(5) {
+    width: 3vw;
+  }
+  tr :nth-child(6) {
+    width: 3vw;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .active-dropzone {
+    opacity: 0.25;
+    background-color: #fff;
+  }
+  .header {
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.005em;
+    line-height: 1.2rem;
+  }
+  th {
+    align-self: center;
+  }
+  tr {
+    width: 100%;
+  }
+  tr :nth-child(2) {
+    width: 30vw;
+  }
+  tr :nth-child(3) {
+    width: 8vw;
+  }
+  tr :nth-child(4) {
+    width: 10vw;
+    align-content: left;
+    position: flex;
+    white-space: nowrap;
+  }
+  tr :nth-child(5) {
+    width: 3vw;
+  }
+  tr :nth-child(6) {
+    width: 3vw;
+  }
+}
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .active-dropzone {
+    opacity: 0.25;
+    background-color: #fff;
+  }
+  .header {
+    font-size: 1em;
+    font-weight: 900;
+    letter-spacing: 0.005em;
+    line-height: 1.2rem;
+  }
+  th {
+    align-self: center;
+  }
+  tr {
+    width: 100%;
+  }
+  tr :nth-child(2) {
+    width: 40vw;
+  }
+  tr :nth-child(3) {
+    width: 10vw;
+  }
+  tr :nth-child(4) {
+    width: 10vw;
+    align-content: left;
+    position: flex;
+  }
+  tr :nth-child(5) {
+    width: 3vw;
+  }
+  tr :nth-child(6) {
+    width: 3vw;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .active-dropzone {
+    opacity: 0.25;
+    background-color: #fff;
+  }
+  .header {
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.005em;
+    line-height: 1.2rem;
+  }
+  th {
+    align-self: center;
+  }
+  tr {
+    width: 100%;
+  }
+  tr :nth-child(2) {
+    width: 45vw;
+  }
+  tr :nth-child(3) {
+    width: 10vw;
+  }
+  tr :nth-child(4) {
+    width: 10vw;
+    align-content: left;
+    position: flex;
+  }
+  tr :nth-child(5) {
+    width: 3vw;
+    align-content: left;
+    position: flex;
+  }
+  tr :nth-child(6) {
+    width: 3vw;
+    align-content: left;
+    position: flex;
+  }
+}
+
 .table {
   border-spacing: 0px;
 }
@@ -127,39 +322,13 @@ export default {
 }
 
 .header {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: block;
-  font-family: Poppins;
+  font-family: PoppinsBold;
   font-style: normal;
-  font-weight: 900;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height, or 150% */
-
   display: flex;
   align-items: center;
-  letter-spacing: 0.005em;
+
   text-transform: uppercase;
-
-  /* black */
-
   color: #0c0c0c;
-
   opacity: 0.6;
-}
-th {
-  align-self: center;
-}
-tr :nth-child(2) {
-  padding-right: 1rem;
-  width: 30rem;
-}
-tr :nth-child(3) {
-  padding-right: 6rem;
-}
-tr :nth-child(4) {
-  padding-right: 3rem;
 }
 </style>

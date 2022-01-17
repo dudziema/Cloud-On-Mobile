@@ -5,6 +5,13 @@ var wsOnmessageListeners = [];
 var wsOnmessageListenersAuth = [];
 var shouldDisconnect = false;
 
+
+
+
+
+
+   
+
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
 }

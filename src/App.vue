@@ -10,6 +10,10 @@
   font-family: "Poppins";
   src: url(./assets/fonts/Poppins-ExtraLight.ttf);
 }
+@font-face {
+  font-family: "PoppinsBold";
+  src: url(./assets/fonts/Poppins-Regular.ttf);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

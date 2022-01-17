@@ -130,6 +130,123 @@ export default {
 };
 </script>
 <style scoped>
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  .entry {
+    font-size: 0.3rem;
+  }
+  .trash-icon {
+    width: 0.6rem;
+    height: 1rem;
+    opacity: 0.6;
+    display: flex;
+  }
+  .download-icon {
+    width: 0.6rem;
+    height: 1rem;
+    display: flex;
+  }
+  img {
+    width: 30%;
+  }
+  .trash-button {
+    padding: 0rem 0.3rem;
+  }
+  .download-button {
+    padding: 0rem 0.3rem;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .entry {
+    font-size: 0.6rem;
+  }
+  .trash-icon {
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.6;
+    display: flex;
+  }
+  .download-icon {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+  }
+  img {
+    width: 30%;
+  }
+  .trash-button {
+    padding: 0rem 0.3rem;
+  }
+  .download-button {
+    padding: 0rem 0.3rem;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .entry {
+    height: 3rem;
+    font-size: 0.9rem;
+  }
+  .trash {
+    padding-left: 1rem;
+    width: 3%;
+    opacity: 0.6;
+  }
+  .download {
+    padding-left: 1rem;
+    height: 8%;
+    width: 3rem;
+  }
+  .download-button {
+    padding: 0px;
+  }
+  tbody > tr:hover td {
+    height: 3rem;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .entry {
+    height: 3rem;
+    font-size: 0.9rem;
+  }
+  .trash {
+    padding-left: 1rem;
+    width: 3%;
+    opacity: 0.6;
+  }
+  .download {
+    padding-left: 1rem;
+    height: 8%;
+    width: 3rem;
+  }
+  .download-button {
+    padding: 0px;
+  }
+  tbody > tr:hover td {
+    height: 3rem;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .entry {
+    height: 3rem;
+  }
+  .trash {
+    padding-left: 1rem;
+    width: 2rem;
+    opacity: 0.6;
+  }
+  .download {
+    padding-left: 1rem;
+
+    width: 2rem;
+  }
+  .download-button {
+    padding: 0px;
+  }
+  tbody > tr:hover td {
+    height: 3rem;
+  }
+}
+
 /* #checkbox {
   opacity: 0.2;
   /* black */
@@ -144,30 +261,13 @@ img {
 
 .entry {
   background: #fff;
-  height: 3rem;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   border-right: none;
   border-left: none;
-  border-bottom: 1px solid rgb(231, 231, 231);
-  color: rgb(87, 87, 87);
 }
-.trash {
-  padding-left: 1rem;
-  height: 8%;
-  opacity: 0.6;
-  border-bottom: 1px solid rgb(231, 231, 231);
-  color: rgb(87, 87, 87);
-  width: 3rem;
-}
-.download {
-  padding-left: 1rem;
-  height: 8%;
-  border-bottom: 1px solid rgb(231, 231, 231);
-  color: rgb(87, 87, 87);
-  width: 3rem;
-}
+
 .trash-button,
 .download-button {
   border: none;
@@ -175,6 +275,9 @@ img {
 }
 tbody > tr:hover td {
   background: #f5faff;
-  height: 3rem;
+}
+tbody > tr td {
+  border-bottom: 1px solid rgb(231, 231, 231);
+  color: rgb(87, 87, 87);
 }
 </style>
