@@ -90,7 +90,6 @@ export default {
 };
 </script>
 <style scoped>
-
 @media screen and (min-width: 0px) and (max-width: 576px) {
   .logo {
     margin-bottom: 10px;
@@ -177,7 +176,7 @@ export default {
     font-size: 1rem;
   }
   .filelist {
-    margin-top: 5rem;
+    margin-top: 9rem;
     margin-left: 8rem;
     width: 80vw;
   }
@@ -265,10 +264,10 @@ export default {
     margin-left: 12rem;
     width: 20rem;
     font-size: 1rem;
-    padding-top: 5rem;
+    padding-top: 3rem;
   }
   .filelist {
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-left: 12rem;
     width: 80vw;
   }
@@ -350,12 +349,12 @@ export default {
   }
   .columntitle {
     margin-left: 15rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
     width: 20rem;
     font-size: 2rem;
   }
   .filelist {
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-left: 15rem;
     width: 80vw;
   }
@@ -437,12 +436,12 @@ export default {
   }
   .columntitle {
     margin-left: 15rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
     width: 20rem;
     font-size: 2rem;
   }
   .filelist {
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-left: 15rem;
     width: 80vw;
   }
@@ -526,14 +525,14 @@ export default {
     opacity: 0.5;
   }
   .columntitle {
-    margin-left: 16rem;
+    margin-left: 15rem;
 
     width: 20rem;
-    font-size: 36px;
-    padding-top: 5rem;
+    font-size: 2rem;
+    padding-top: 3rem;
   }
   .filelist {
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-left: 15rem;
     width: 80vw;
   }
@@ -627,7 +626,7 @@ export default {
 }
 
 .columntitle {
-  font-family: Poppins;
+  font-family: PoppinsBold;
   font-style: normal;
   background-color: #fff;
   position: fixed;

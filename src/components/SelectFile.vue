@@ -70,8 +70,8 @@ export default {
     position: fixed;
     padding-left: 3rem;
     padding-right: 3rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
     font-size: 16px;
     line-height: 24px;
     border-radius: 12px;

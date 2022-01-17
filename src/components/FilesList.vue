@@ -303,7 +303,7 @@ export default {
 }
 
 .header {
-  font-family: Poppins;
+  font-family: PoppinsBold;
   font-style: normal;
   display: flex;
   align-items: center;

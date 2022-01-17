@@ -7,8 +7,9 @@
     </div>
     <div class="passcode-inputs" id="passcode">
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input-first"
         id="input0"
         v-on:keyup="inputenter(0)"
@@ -16,8 +17,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input1"
         v-on:keyup="inputenter(1)"
@@ -25,8 +27,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input2"
         v-on:keyup="inputenter(2)"
@@ -34,8 +37,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input3"
         v-on:keyup="inputenter(3)"
@@ -44,7 +48,8 @@
       />
       <input
         autocomplete="off"
-        pattern="\d*"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input"
         id="input4"
         v-on:keyup="inputenter(4)"
@@ -52,8 +57,9 @@
         maxlength="1"
       />
       <input
-        autocomplete="off"
-        pattern="\d*"
+        autocomplete="nope"
+        pattern="[0-9]*"
+        inputmode="numeric"
         class="input-last"
         id="input5"
         v-on:keyup="inputenter(5)"
