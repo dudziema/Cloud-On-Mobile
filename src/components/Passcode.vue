@@ -510,7 +510,7 @@ export default {
     padding-bottom: 1rem;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1201px) {
   .enter {
     grid-column: 3 / 6;
     font-size: 230%;

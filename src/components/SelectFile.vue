@@ -23,26 +23,42 @@ export default {
 };
 </script>
 <style scoped>
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  .select {
+    position: fixed;
+    font-size: 0.6rem;
+    line-height: 1rem;
+    padding: 0.4rem;
+    border-radius: 8px;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 768px) {
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}
+@media screen and (min-width: 1201px) {
+  .select {
+    position: fixed;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 12px;
+  }
+}
+
 .select {
-  /* primary/100 */
-
-  background: #0e70f1;
-  border-radius: 12px;
-
-  /* Button/Large */
-
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 5%;
+  color: #ffffff;
+  background: #0e70f1;
 
   letter-spacing: 0.01em;
-
-  /* white */
-
-  color: #ffffff;
 }
 input {
   display: none;

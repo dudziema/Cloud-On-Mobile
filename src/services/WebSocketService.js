@@ -3,6 +3,13 @@ var ws = null;
 var files = [];
 var wsOnmessageListeners = [];
 
+
+
+
+
+
+   
+
 function sendMsgToWs(msg) {
   ws.send(JSON.stringify(msg));
 }
