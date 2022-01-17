@@ -137,33 +137,53 @@ export default {
   .trash-icon {
     width: 0.6rem;
     height: 1rem;
-    opacity:0.6;
-    display:flex;
+    opacity: 0.6;
+    display: flex;
   }
   .download-icon {
     width: 0.6rem;
     height: 1rem;
-display:flex;
+    display: flex;
   }
   img {
     width: 30%;
   }
-  .trash-button{
-  padding: 0rem 0.3rem;
+  .trash-button {
+    padding: 0rem 0.3rem;
   }
   .download-button {
     padding: 0rem 0.3rem;
   }
 }
 @media screen and (min-width: 576px) and (max-width: 768px) {
+  .entry {
+    font-size: 0.6rem;
+  }
+  .trash-icon {
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.6;
+    display: flex;
+  }
+  .download-icon {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+  }
+  img {
+    width: 30%;
+  }
+  .trash-button {
+    padding: 0rem 0.3rem;
+  }
+  .download-button {
+    padding: 0rem 0.3rem;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 992px) {
-}
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-}
-@media screen and (min-width: 1201px) {
   .entry {
     height: 3rem;
+    font-size: 0.9rem;
   }
   .trash {
     padding-left: 1rem;
@@ -176,7 +196,51 @@ display:flex;
     width: 3rem;
   }
   .download-button {
-    padding:0px;
+    padding: 0px;
+  }
+  tbody > tr:hover td {
+    height: 3rem;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .entry {
+    height: 3rem;
+    font-size: 0.9rem;
+  }
+  .trash {
+    padding-left: 1rem;
+    width: 3%;
+    opacity: 0.6;
+  }
+  .download {
+    padding-left: 1rem;
+    height: 8%;
+    width: 3rem;
+  }
+  .download-button {
+    padding: 0px;
+  }
+  tbody > tr:hover td {
+    height: 3rem;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .entry {
+    height: 3rem;
+  }
+  .trash {
+    padding-left: 1rem;
+    width: 2rem;
+    opacity: 0.6;
+  }
+  .download {
+    padding-left: 1rem;
+
+    width: 2rem;
+  }
+  .download-button {
+    padding: 0px;
   }
   tbody > tr:hover td {
     height: 3rem;

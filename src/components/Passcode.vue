@@ -81,7 +81,10 @@
 
     <div class="stores">
       <br />
-      <Playstore class="google-button" /><Appstore class="appstore-button" />
+      <Playstore class="google-button" /><a
+        href="https://apps.apple.com/app/id1605476909"
+        ><Appstore class="appstore-button"
+      /></a>
     </div>
   </div>
 </template>

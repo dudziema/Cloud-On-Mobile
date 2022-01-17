@@ -32,11 +32,38 @@ export default {
     border-radius: 8px;
   }
 }
-@media screen and (min-width: 576px) and (max-width: 768px) {
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .select {
+    position: fixed;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    padding: 0.4rem;
+    border-radius: 8px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 992px) {
+  .select {
+    position: fixed;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
+  .select {
+    position: fixed;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
 }
 @media screen and (min-width: 1201px) {
   .select {

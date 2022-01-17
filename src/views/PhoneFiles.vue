@@ -90,67 +90,150 @@ export default {
 };
 </script>
 <style scoped>
-.container {
-  display: grid;
-  grid-template: repeat(5, 1fr) / repeat(10, 1fr);
-  grid-gap: 3px;
-}
+
 @media screen and (min-width: 0px) and (max-width: 576px) {
-  .menu{
-    grid-column:1/2;
-  }
   .logo {
     margin-bottom: 10px;
-    margin-top: 0.2rem;
-    margin-left: 1rem;
-    width: 45px;
+    width: 50px;
     height: 20px;
-    left: 10px;
-    top: 10px;
+    left: 25px;
+    top: 24px;
   }
   .button-select {
-    top: 3rem;
-    margin-left: 0.5rem;
+    top: 4rem;
+    margin-left: 0.9rem;
+    height: 3rem;
   }
   .grid {
-    padding: 0.2rem;
-    width: 2.75%;
+    padding: 0.5rem;
+    width: 0.9rem;
   }
   .all-files {
-    top: 6rem;
+    top: 5rem;
     height: 3rem;
-    width: 100%;
     margin-left: 0.5rem;
     font-size: 0.6rem;
   }
   .clock {
-    width: 2.75%;
-    padding: 0.2rem;
+    padding: 0.5rem;
+    width: 0.9rem;
   }
   .recent-files {
-    top: 9rem;
+    top: 7rem;
     position: fixed;
     height: 3rem;
-    width: 100%;
     font-size: 0.6rem;
     margin-left: 0.5rem;
   }
   .phoneicon {
-    padding: 0.2rem;
-    width: 5%;
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 4rem;
+    height: 2rem;
+
+    width: 7rem;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .phoneName {
+    font-size: 0.7rem;
+  }
+  .settings {
+    width: 100%;
+    bottom: 2rem;
+    height: 2rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.6rem;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    font-size: 0.6rem;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+    width: 0.9rem;
+  }
+  img {
+    width: 0.6rem;
+    padding-left: 0.4rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 8rem;
+    margin-top: 3rem;
+    width: 20rem;
+    font-size: 1rem;
+  }
+  .filelist {
+    margin-top: 5rem;
+    margin-left: 8rem;
+    width: 80vw;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .logo {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 20px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 4rem;
+    margin-left: 0.9rem;
+    height: 3rem;
+  }
+  .grid {
+    padding: 0.5rem;
+    width: 1.2rem;
+  }
+  .all-files {
+    top: 7rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .clock {
+    padding: 0.5rem;
+    width: 1.2rem;
+  }
+  .recent-files {
+    top: 10rem;
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+    width: 1.2rem;
   }
   .connected-with {
     width: 100%;
     bottom: 6rem;
     height: 3rem;
     width: 100%;
-    width: 7rem;
-    height: 3rem;
+    width: 9.5rem;
+    height: 64px;
     margin-left: 0.5rem;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   .phoneName {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
   .settings {
     width: 100%;
@@ -158,104 +241,86 @@ export default {
     height: 3rem;
     width: 100%;
     margin-left: 0.5rem;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
   }
   .settingsicon {
-    width: 2.75%;
-    padding: 0.2rem;
+    padding: 0.5rem;
   }
   .disconnect {
     bottom: 0;
     width: 100%;
     height: 3rem;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     margin-left: 0.5rem;
   }
   .logout {
-    width: 2.75%;
-    padding: 0.2rem;
+    padding: 0.5rem;
   }
   img {
-    width: 0.5rem;
-    padding-left: 0.2rem;
+    width: 1.5rem;
+    padding-left: 1rem;
     opacity: 0.5;
   }
   .columntitle {
-    margin-left: 7rem;
-    margin-top: 1rem;
-    width: 6rem;
+    margin-left: 12rem;
+    width: 20rem;
     font-size: 1rem;
-    position: fixed;
-  }
-  .table{
-    grid-column: 1/10;
-    grid-row:1/2;
+    padding-top: 5rem;
   }
   .filelist {
-    margin-top: 5rem;
-    margin-left: 7rem;
-    width: 100vw;
-    position: fixed;
-    align-self: stretch;
+    margin-top: 8rem;
+    margin-left: 12rem;
+    width: 80vw;
   }
-
 }
-@media screen and (min-width: 576px) and (max-width: 768px) {
-  .menu{
-    grid-column:1/2;
-  }
+@media screen and (min-width: 769px) and (max-width: 992px) {
   .logo {
     margin-bottom: 10px;
-    margin-top: 0.2rem;
-    margin-left: 1rem;
-    width: 45px;
-    height: 20px;
-    left: 10px;
-    top: 10px;
+    width: 90px;
+    height: 40px;
+    left: 25px;
+    top: 24px;
   }
   .button-select {
-    top: 3rem;
+    top: 6rem;
     margin-left: 0.5rem;
   }
   .grid {
-    padding: 0.2rem;
-    width: 2.75%;
+    padding: 0.5rem;
   }
   .all-files {
-    top: 6rem;
-    height: 3rem;
+    top: 9.5rem;
+    height: 3vh;
     width: 100%;
     margin-left: 0.5rem;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
   }
   .clock {
-    width: 2.75%;
-    padding: 0.2rem;
+    padding: 0.5rem;
   }
   .recent-files {
-    top: 9rem;
+    top: 12rem;
     position: fixed;
-    height: 3rem;
+    height: 3vh;
     width: 100%;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     margin-left: 0.5rem;
   }
   .phoneicon {
-    padding: 0.2rem;
-    width: 5%;
+    padding: 0.5rem;
   }
   .connected-with {
     width: 100%;
     bottom: 6rem;
     height: 3rem;
     width: 100%;
-    width: 7rem;
-    height: 3rem;
+    width: 9.5rem;
+    height: 64px;
     margin-left: 0.5rem;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   .phoneName {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
   .settings {
     width: 100%;
@@ -263,53 +328,129 @@ export default {
     height: 3rem;
     width: 100%;
     margin-left: 0.5rem;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
   }
   .settingsicon {
-    width: 2.75%;
-    padding: 0.2rem;
+    padding: 0.5rem;
   }
   .disconnect {
     bottom: 0;
     width: 100%;
     height: 3rem;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     margin-left: 0.5rem;
   }
   .logout {
-    width: 2.75%;
-    padding: 0.2rem;
+    padding: 0.5rem;
   }
   img {
-    width: 0.5rem;
-    padding-left: 0.2rem;
+    width: 1.5rem;
+    padding-left: 1rem;
     opacity: 0.5;
   }
   .columntitle {
-    margin-left: 7rem;
-    margin-top: 1rem;
-    width: 6rem;
-    font-size: 1rem;
-    position: fixed;
-  }
-  .table{
-    grid-column: 1/10;
-    grid-row:1/2;
+    margin-left: 15rem;
+    margin-top: 5rem;
+    width: 20rem;
+    font-size: 2rem;
   }
   .filelist {
-    margin-top: 5rem;
-    margin-left: 7rem;
-    width: 100vw;
-    position: fixed;
-    align-self: stretch;
+    margin-top: 8rem;
+    margin-left: 15rem;
+    width: 80vw;
   }
-
-}
-@media screen and (min-width: 768px) and (max-width: 992px) {
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
+  .logo {
+    margin-bottom: 10px;
+    width: 80px;
+    height: 30px;
+    left: 25px;
+    top: 24px;
+  }
+  .button-select {
+    top: 6rem;
+    margin-left: 0.5rem;
+  }
+  .grid {
+    padding: 0.5rem;
+  }
+  .all-files {
+    top: 9rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+  }
+  .clock {
+    padding: 0.5rem;
+  }
+  .recent-files {
+    top: 12rem;
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  .phoneicon {
+    padding: 0.5rem;
+  }
+  .connected-with {
+    width: 100%;
+    bottom: 6rem;
+    height: 3rem;
+    width: 100%;
+    width: 216px;
+    height: 64px;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .phoneName {
+    font-size: 0.8rem;
+  }
+  .settings {
+    width: 100%;
+    bottom: 3rem;
+    height: 3rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+  }
+  .settingsicon {
+    padding: 0.5rem;
+  }
+  .disconnect {
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  .logout {
+    padding: 0.5rem;
+  }
+  img {
+    width: 1.5rem;
+    padding-left: 1rem;
+    opacity: 0.5;
+  }
+  .columntitle {
+    margin-left: 15rem;
+    margin-top: 5rem;
+    width: 20rem;
+    font-size: 2rem;
+  }
+  .filelist {
+    margin-top: 8rem;
+    margin-left: 15rem;
+    width: 80vw;
+  }
 }
 @media screen and (min-width: 1201px) {
+  .menu {
+    grid-area: menu;
+  }
   .logo {
     margin-bottom: 10px;
     width: 90px;
@@ -336,7 +477,7 @@ export default {
   }
   .recent-files {
     top: 12rem;
-    position: fixed;
+
     height: 3rem;
     width: 100%;
     font-size: 16px;
@@ -385,15 +526,16 @@ export default {
     opacity: 0.5;
   }
   .columntitle {
-    margin-left: 15rem;
-    margin-top: 5rem;
+    margin-left: 16rem;
+
     width: 20rem;
     font-size: 36px;
+    padding-top: 5rem;
   }
   .filelist {
-    margin-top: 5rem;
+    margin-top: 8rem;
     margin-left: 15rem;
-    width: 100vw;
+    width: 80vw;
   }
 }
 
@@ -426,6 +568,7 @@ export default {
   font-style: normal;
   font-weight: normal;
   line-height: 24px;
+  position: fixed;
   display: flex;
   align-items: center;
   letter-spacing: 0.003em;
@@ -486,10 +629,17 @@ export default {
 .columntitle {
   font-family: Poppins;
   font-style: normal;
+  background-color: #fff;
+  position: fixed;
   font-weight: 600;
   line-height: 48px;
   align-items: center;
   letter-spacing: -0.3px;
+
+  width: 100%;
   color: #0c0c0c;
+}
+.filelist {
+  position: fixed;
 }
 </style>
