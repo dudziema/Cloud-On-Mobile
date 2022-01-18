@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="menu">
+      <!-- <div class="hamburger-menu"><HamburgerMenu /></div> -->
       <div class="logo"><Piglogo /></div>
       <div class="button-select"><SelectFile @change="selectedFile" /></div>
 
@@ -43,6 +44,7 @@ import LogOut from "@/components/LogOut.vue";
 import PhoneIcon from "@/components/PhoneIcon.vue";
 import Piglogo from "@/components/Piglogo.vue";
 import InProgress from "@/assets/images/inprogress.png";
+// import HamburgerMenu from "@/components/HamburgerMenu.vue";
 
 export default {
   name: "PhoneFiles",
@@ -56,6 +58,7 @@ export default {
     LogOut,
     PhoneIcon,
     Piglogo,
+    // HamburgerMenu,
   },
   data() {
     return {
