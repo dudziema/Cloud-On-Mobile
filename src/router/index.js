@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import PhoneFiles from "../views/PhoneFiles.vue";
+import ErrorScreen from "../views/ErrorScreen.vue";
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: "/error",
+    name: "ErrorScreen",
+    component: ErrorScreen,
   },
 ];
 

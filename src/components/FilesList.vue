@@ -91,7 +91,7 @@ export default {
     this.entries.forEach((element) => {
       element.onHover = false;
     });
-    this.passcode = parseInt(this.$route.params.passcode)
+    this.passcode = parseInt(this.$route.params.passcode);
     var my_this = this;
     this.$addWsOnMessageListenerAuth(function onAuthMsg(obj) {
       if (obj.result == -1) {
@@ -114,7 +114,9 @@ export default {
       },
       function () {
         // Failure
-        // Alert cant connect to the server
+        this.$router.push({
+          name: "Home",
+        });
       }
     );
   },
